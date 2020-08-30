@@ -71,6 +71,9 @@ position_H=0
 position_perso_map_V=0
 position_perso_map_H=0
 
+position_objet_map_V=0
+position_objet_map_H=0
+
 
 pygame.init()
 
@@ -98,6 +101,7 @@ image_mort = pygame.image.load("mort.png").convert_alpha()
 # Rafraichissement de l'écran
 pygame.display.flip()
 pygame.key.set_repeat(400, 30)
+
 
 continuer = 1
 
@@ -184,18 +188,19 @@ while continuer:
     position_pixel_perso = image_perso.get_rect()
     fenetre.blit(image_perso, position_pixel_perso)
 
-    #choisir un nombre aleatoire dans une liste de map
-    nb_hasard = choice(map)
-    print(nb_hasard)
-    #choisir un nombre aleatoire dans la liste 
-    nb_hasard1 = 0
-    while nb_hasard1 != 1:
-        nb_hasard1 = choice(nb_hasard)
-        print(nb_hasard1)
+    # choisir un nombre aleatoire dans une liste de map
+    #nb_hasard = choice(map)
+    #print(nb_hasard)
 
-        position_pixel_tube = (longueur_case * position_V_map, hauteur_case * position_H_map)
-        image_tube = pygame.transform.scale(image_tube, (longueur_case, hauteur_case))
-        fenetre.blit(image_tube, position_pixel_tube)
+    # choisir un nombre aleatoire dans la liste
+    #nb_hasard1 = 0
+    #while nb_hasard1 != 1:
+        #nb_hasard1 = choice(nb_hasard)
+        #print(nb_hasard1)
+
+        #position_pixel_tube = (longueur_case * position_objet_map_V, hauteur_case * position_objet_map_H)
+        #image_tube = pygame.transform.scale(image_tube, (longueur_case, hauteur_case))
+        #fenetre.blit(image_tube, position_pixel_tube)
 
     position_perso_map_V = 0
     position_perso_map_V = 0
@@ -345,22 +350,19 @@ while continuer:
                     position_pixel_libre = (longueur_case * position_V_map, hauteur_case * position_H_map)
                     image_libre = pygame.transform.scale(image_libre, (longueur_case, hauteur_case))
                     fenetre.blit(image_libre, position_pixel_libre)
+        #fenetre.blit(image_tube, position_pixel_tube)
         fenetre.blit(image_depart, position_pixel_depart)
         fenetre.blit(image_perso, position_pixel_perso)
         fenetre.blit(image_mur, position_pixel_mur)
         fenetre.blit(image_gardien, position_pixel_gardien)
-        if perdu_jeu == True:
-            fenetre.blit(image_mort, position_pixel_mort)
-        if trouver_aiguille == False:
-            fenetre.blit(image_aiguille, position_pixel_aiguille)
         if trouver_ether == False:
             fenetre.blit(image_ether, position_pixel_ether)
-        fenetre.blit(image_tube, position_pixel_tube)
+        if trouver_aiguille == False:
+            fenetre.blit(image_aiguille, position_pixel_aiguille)
         if gagnez_jeu == True:
             fenetre.blit(image_gagnez, position_pixel_gagnez)
-
-
-
+        if perdu_jeu == True:
+            fenetre.blit(image_mort, position_pixel_mort)
 
 
         # Rafraichissement
