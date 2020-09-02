@@ -12,9 +12,6 @@ from constantes import *
 
 pygame.init()
 
-trouver_ether = False
-trouver_aiguille = False
-
 # Ouverture de la fenêtre Pygame et tire
 fenetre = pygame.display.set_mode((longueur_fenetre, hauteur_fenetre),RESIZABLE)
 
@@ -29,31 +26,14 @@ image_gardien = pygame.image.load("gardien.png").convert_alpha()
 image_aiguille = pygame.image.load("aiguille.png").convert_alpha()
 image_ether = pygame.image.load("macgyver_ressources/ressource/ether.png").convert_alpha()
 image_tube = pygame.image.load("macgyver_ressources/ressource/tube_plastique.png").convert_alpha()
+image_gagnez = pygame.image.load("gagnez.jpg").convert_alpha()
+image_mort = pygame.image.load("mort.png").convert_alpha()
 
 # Rafraichissement de l'écran
 pygame.display.flip()
 pygame.key.set_repeat(400, 30)
 
 continuer = 1
-continuer_accueil = 1
-continuer_jeu = 1
-
-#
-fichier_texte = open("Laby.txt", "r")
-print(fichier_texte)
-
-# On lit chaque ligne du fichier
-for lignes in fichier_texte:
-
-    print("ligne")
-    print(lignes)
-
-    # On lir chaque charactere du fichier
-    for charactere in lignes:
-        print("char")
-        print(charactere)
-        charactere=map[0][0]
-        print(map[0][0])
 
 # Boucle principale
 while continuer:
@@ -66,6 +46,16 @@ while continuer:
 
     # Rafraichissement
     pygame.display.flip()
+
+    trouver_tube = False
+    trouver_ether = False
+    trouver_aiguille = False
+    gagnez_jeu = False
+    perdu_jeu = False
+    sortir_du_jeu = False
+
+    continuer_accueil = 1
+    continuer_jeu = 1
 
     # Boucle d'accueil
     while continuer_accueil:
@@ -86,37 +76,21 @@ while continuer:
     for position_V_map in range (0,15):
         for position_H_map in range (0,15):
 
-            a = 15
 
-            if map[position_H_map][position_V_map] == 0:
+            if map1[position_H_map][position_V_map] == '0':
                 position_pixel_mur = (longueur_case * position_V_map,hauteur_case * position_H_map)
                 image_mur = pygame.transform.scale(image_mur,(longueur_case,hauteur_case))
                 fenetre.blit(image_mur, position_pixel_mur)
 
-            elif map[position_H_map][position_V_map] == 2:
+            elif map1[position_H_map][position_V_map] == '2':
                 position_pixel_gardien = (longueur_case * position_V_map,hauteur_case*position_H_map)
                 image_gardien = pygame.transform.scale(image_gardien,(longueur_case,hauteur_case))
                 fenetre.blit(image_gardien, position_pixel_gardien)
 
-            elif map[position_H_map][position_V_map] == 9:
+            elif map1[position_H_map][position_V_map] == '9':
                 position_pixel_depart = (longueur_case * position_V_map, hauteur_case * position_H_map)
                 image_depart = pygame.transform.scale(image_depart, (longueur_case, hauteur_case))
                 fenetre.blit(image_depart, position_pixel_depart)
-
-            elif map[position_H_map][position_V_map] == 3:
-                position_pixel_aiguille = (longueur_case * position_V_map,hauteur_case * position_H_map)
-                image_aiguille = pygame.transform.scale(image_aiguille,(longueur_case,hauteur_case))
-                fenetre.blit(image_aiguille, position_pixel_aiguille)
-
-            elif map[position_H_map][position_V_map] == 4:
-                position_pixel_ether = (longueur_case * position_V_map, hauteur_case * position_H_map)
-                image_ether = pygame.transform.scale(image_ether, (longueur_case, hauteur_case))
-                fenetre.blit(image_ether, position_pixel_ether)
-
-            elif map[position_H_map][position_V_map] == a:
-                position_pixel_tube = (longueur_case * position_V_map, hauteur_case * position_H_map)
-                image_tube = pygame.transform.scale(image_tube, (longueur_case, hauteur_case))
-                fenetre.blit(image_tube, position_pixel_tube)
 
             else:
                 position_pixel_libre = (longueur_case * position_V_map,hauteur_case * position_H_map)
@@ -129,8 +103,79 @@ while continuer:
     position_pixel_perso = image_perso.get_rect()
     fenetre.blit(image_perso, position_pixel_perso)
 
+    # choisir un nombre aleatoire dans la map pour l'ether
+
+    position_ether = 'E'
+    nb_hasard_ether = 0
+    nombre_aleatoire_ether_H = randint(0, 14)
+    nombre_aleatoire_ether_V = randint(0, 14)
+
+    if trouver_ether == False:
+        while nb_hasard_ether != '1':
+            nombre_aleatoire_ether_H = randint(0, 14)
+            nombre_aleatoire_ether_V = randint(0, 14)
+            nb_hasard_ether = map1[nombre_aleatoire_ether_V][nombre_aleatoire_ether_H]
+            print(nombre_aleatoire_ether_H, nombre_aleatoire_ether_V)
+            print(nb_hasard_ether)
+
+            position_pixel_ether = (longueur_case * nombre_aleatoire_ether_H, hauteur_case * nombre_aleatoire_ether_V)
+            image_ether = pygame.transform.scale(image_ether, (longueur_case, hauteur_case))
+            fenetre.blit(image_ether, position_pixel_ether)
+
+    map1[nombre_aleatoire_ether_V][nombre_aleatoire_ether_H] = position_ether
+    print(position_ether)
+
+    # choisir un nombre aleatoire dans la map pour l'aiguille
+
+    position_aiguille = 'A'
+    nb_hasard_aiguille = 0
+    nombre_aleatoire_aiguille_H = randint(0, 14)
+    nombre_aleatoire_aiguille_V = randint(0, 14)
+
+    if trouver_aiguille == False:
+        while nb_hasard_aiguille != '1':
+            nombre_aleatoire_aiguille_H = randint(0, 14)
+            nombre_aleatoire_aiguille_V = randint(0, 14)
+            nb_hasard_aiguille = map1[nombre_aleatoire_aiguille_V][nombre_aleatoire_aiguille_H]
+            print(nombre_aleatoire_aiguille_H, nombre_aleatoire_aiguille_V)
+            print(nb_hasard_aiguille)
+
+            position_pixel_aiguille = (longueur_case * nombre_aleatoire_aiguille_H, hauteur_case * nombre_aleatoire_aiguille_V)
+            image_aiguille = pygame.transform.scale(image_aiguille, (longueur_case, hauteur_case))
+            fenetre.blit(image_aiguille, position_pixel_aiguille)
+
+    map1[nombre_aleatoire_aiguille_V][nombre_aleatoire_aiguille_H] = position_aiguille
+    print(position_aiguille)
+
+    # choisir un nombre aleatoire dans la map pour le tube
+    position_tube = 'T'
+    nb_hasard_tube = 0
+    nombre_aleatoire_tube_H = randint(0, 14)
+    nombre_aleatoire_tube_V = randint(0, 14)
+
+    if trouver_tube == False:
+        while nb_hasard_tube != '1':
+            nombre_aleatoire_tube_H = randint(0, 14)
+            nombre_aleatoire_tube_V = randint(0, 14)
+            nb_hasard_tube = map1[nombre_aleatoire_tube_V][nombre_aleatoire_tube_H]
+            print(nombre_aleatoire_tube_H, nombre_aleatoire_tube_V)
+            print(nb_hasard_tube)
+
+            position_pixel_tube = (longueur_case * nombre_aleatoire_tube_H, hauteur_case * nombre_aleatoire_tube_V)
+            image_tube = pygame.transform.scale(image_tube, (longueur_case, hauteur_case))
+            fenetre.blit(image_tube, position_pixel_tube)
+
+    map1[nombre_aleatoire_tube_V][nombre_aleatoire_tube_H] = position_tube
+    print(position_tube)
+
+
+    position_perso_map_V = 0
+    position_perso_map_V = 0
+    image_perso.get_rect() == map1[0][0]
+
     # Boucle infinie
     while continuer_jeu:
+        continuer = 0
         for event in pygame.event.get(): # Attente des événements
             if event.type == QUIT:
                 continuer_jeu = 0
@@ -138,7 +183,7 @@ while continuer:
             elif event.type == KEYDOWN:
                 if event.key == K_DOWN:  # Si "flèche bas"
                     if position_perso_map_V != 14:
-                        if map[position_perso_map_V+1][position_perso_map_H] != 0:
+                        if map1[position_perso_map_V+1][position_perso_map_H] != '0':
 
                             # On descend le perso GRAPHIQUEMENT
                             position_pixel_perso = position_pixel_perso.move(0, hauteur_case)
@@ -148,7 +193,7 @@ while continuer:
 
                             print("position dans map a l'horizontal : " + str(position_perso_map_H))
                             print("position dans map a l'horizontal : " + str(position_perso_map_V))
-                            print(map[position_perso_map_V][position_perso_map_H])
+                            print(map1[position_perso_map_V][position_perso_map_H])
 
                         else:
                             print("mur deplacement vers le bas impossible")
@@ -158,7 +203,7 @@ while continuer:
 
                 elif event.key == K_UP:  # Si "flèche haut
                     if position_perso_map_V != 0:
-                        if map[position_perso_map_V-1][position_perso_map_H] != 0:
+                        if map1[position_perso_map_V-1][position_perso_map_H] != '0':
 
                             # On monte le perso GRAPHIQUEMENT
                             position_pixel_perso = position_pixel_perso.move(0, -hauteur_case)
@@ -168,7 +213,7 @@ while continuer:
 
                             print("position dans map a l'horizontal : " + str(position_perso_map_H))
                             print("position dans map a la vertical : " + str(position_perso_map_V))
-                            print(map[position_perso_map_V][position_perso_map_H])
+                            print(map1[position_perso_map_V][position_perso_map_H])
 
                         else:
                             print("mur deplacement vers le haut impossible")
@@ -179,7 +224,7 @@ while continuer:
 
                 elif event.key == K_LEFT: #Si "flèche gauche"
                     if position_perso_map_H != 0:
-                        if map[position_perso_map_V][position_perso_map_H-1] != 0:
+                        if map1[position_perso_map_V][position_perso_map_H-1] != '0':
 
                             # Le perso va à gauche GRAPHIQUEMENT
                             position_pixel_perso = position_pixel_perso.move(-longueur_case,0)
@@ -189,7 +234,7 @@ while continuer:
 
                             print("position dans map a l'horizontal : " + str(position_perso_map_H))
                             print("position dans map a la vertical : " + str(position_perso_map_V))
-                            print(map[position_perso_map_V][position_perso_map_H])
+                            print(map1[position_perso_map_V][position_perso_map_H])
 
                         else:
                             print("mur deplacement vers la gauche impossible")
@@ -200,7 +245,7 @@ while continuer:
 
                 elif event.key == K_RIGHT: # Si "flèche droite"
                     if position_perso_map_H != 14:
-                        if map[position_perso_map_V][position_perso_map_H+1] != 0:
+                        if map1[position_perso_map_V][position_perso_map_H+1] != '0':
                             # Le perso va à droite GRAPHIQUEMENT
                             position_pixel_perso = position_pixel_perso.move(longueur_case,0)
 
@@ -209,37 +254,76 @@ while continuer:
 
                             print("position dans map a l'horizontal : " + str(position_perso_map_H))
                             print("position dans map a la vertical : " + str(position_perso_map_V))
-                            print(map[position_perso_map_V][position_perso_map_H])
+                            print(map1[position_perso_map_V][position_perso_map_H])
 
                         else:
                             print("mur deplacement vers la droite impossible")
                             print("position dans map a l'horizontal : " + str(position_perso_map_H))
                             print("position dans map a la vertical : " + str(position_perso_map_V))
 
-            elif map[position_perso_map_V][position_perso_map_H] == 4:
+            elif map1[position_perso_map_V][position_perso_map_H] == 'E':
                 print("Vous avez trouvez l'ether")
                 trouver_ether = True
 
+            elif map1[position_perso_map_V][position_perso_map_H] == 'T':
+                print("Vous avez trouvez le tube")
+                trouver_tube = True
 
-            elif map[position_perso_map_V][position_perso_map_H] == 3:
+
+            elif map1[position_perso_map_V][position_perso_map_H] == 'A':
                 print("Vous avez trouvez l'aiguille")
                 trouver_aiguille = True
 
-            elif map[position_perso_map_V][position_perso_map_H] == 2:
-                if trouver_ether == True and trouver_aiguille == True:
+            elif map1[position_perso_map_V][position_perso_map_H] == '2':
+                if trouver_ether == True and trouver_aiguille == True and trouver_tube == True:
+                    gagnez_jeu = True
                     print("Vous avez gagnez")
-                    continuer_jeu = 0
-                    continuer = 0
-                else:
+                    position_pixel_gagnez = (0, 0)
+                    image_gagnez = pygame.transform.scale(image_gagnez, (longueur_fenetre, hauteur_fenetre))
+                    fenetre.blit(image_gagnez, position_pixel_gagnez)
+
+                    if gagnez_jeu == True:
+                        while sortir_du_jeu != True:
+                            if event.key == K_F1:
+                                sorir_du_jeu = True
+                                continuer_accueil = 0
+                                continuer_jeu = 0
+                                continuer = 1
+
+
+                            elif event.key == K_F2:
+                                sorir_du_jeu = True
+                                continuer_jeu = 0
+                                continuer = 0
+
+
+                elif trouver_ether == False or trouver_aiguille == False or trouver_tube == False:
+                    perdu_jeu = True
                     print("Vous etes mort")
-                    continuer_jeu = 0
-                    continuer = 0
+                    position_pixel_mort = (0, 0)
+                    image_mort = pygame.transform.scale(image_mort, (longueur_fenetre, hauteur_fenetre))
+                    fenetre.blit(image_mort, position_pixel_mort)
+
+                    if perdu_jeu == True:
+                        while sortir_du_jeu != True:
+                            if event.key == K_F1:
+                                sorir_du_jeu = True
+                                continuer_accueil = 0
+                                continuer_jeu = 0
+                                continuer = 1
+
+
+                            elif event.key == K_F2:
+                                sorir_du_jeu = True
+                                continuer_jeu = 0
+                                continuer = 0
+
 
         # Re-collage
 
         for position_V_map in range (0,15):
             for position_H_map in range (0,15): 
-                if map[position_H_map][position_V_map] == 0:
+                if map1[position_H_map][position_V_map] == '0':
                         position_pixel_mur = (longueur_case*position_V_map,hauteur_case*position_H_map)
                         image_mur = pygame.transform.scale(image_mur,(longueur_case,hauteur_case))
                         fenetre.blit(image_mur, position_pixel_mur)
@@ -251,13 +335,16 @@ while continuer:
         fenetre.blit(image_perso, position_pixel_perso)
         fenetre.blit(image_mur, position_pixel_mur)
         fenetre.blit(image_gardien, position_pixel_gardien)
-        if trouver_aiguille == False:
-            fenetre.blit(image_aiguille, position_pixel_aiguille)
+        if trouver_tube == False:
+            fenetre.blit(image_tube, position_pixel_tube)
         if trouver_ether == False:
             fenetre.blit(image_ether, position_pixel_ether)
-        fenetre.blit(image_tube, position_pixel_tube)
-
-
+        if trouver_aiguille == False:
+            fenetre.blit(image_aiguille, position_pixel_aiguille)
+        if gagnez_jeu == True:
+            fenetre.blit(image_gagnez, position_pixel_gagnez)
+        if perdu_jeu == True:
+            fenetre.blit(image_mort, position_pixel_mort)
 
 
         # Rafraichissement
