@@ -1,5 +1,3 @@
-import pygame
-
 # On ouvre le ficher texte
 fichier_texte = open("Laby.txt", "r")# r = on lit le texte
 print(fichier_texte)
@@ -43,3 +41,10 @@ position_perso_map_H=0
 position_objet_map_V=0
 position_objet_map_H=0
 
+position_pixel_mort = 0
+position_pixel_mur = 0
+position_pixel_depart = 0
+position_pixel_tube = 0
+position_pixel_ether = 0
+position_pixel_aiguille = 0
+position_pixel_gagnez = 0
