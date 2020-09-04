@@ -130,36 +130,6 @@ def deplacement():
 
 def recollage ():
 
-    global position_pixel_mur
-    global position_pixel_libre
-    global position_pixel_depart
-    global position_pixel_perso
-    global position_pixel_mur
-    global position_pixel_gardien
-    global position_pixel_tube
-    global position_pixel_ether
-    global position_pixel_aiguille
-    global position_pixel_gagnez
-    global position_pixel_mort
-
-    global position_V_map
-    global position_H_map
-    global longueur_case
-    global hauteur_case
-
-    global image_mur
-    global image_libre
-    global image_depart
-    global image_perso
-    global image_mur
-    global image_gardien
-    global image_tube
-    global image_ether
-    global image_aiguille
-    global image_gagnez
-    global image_mort
-
-
     for position_V_map in range(0, 15):
         for position_H_map in range(0, 15):
             if map1[position_H_map][position_V_map] == 'W':
