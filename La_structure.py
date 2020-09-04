@@ -48,85 +48,148 @@ def deplacement():
     global position_perso_map_H
     global position_pixel_perso
 
-    if event.key == K_DOWN:  # Si "flèche bas"
-        if position_perso_map_V != 14:
-            if map1[position_perso_map_V + 1][position_perso_map_H] != 'W':
+    if fin == False:
+        if event.key == K_DOWN:  # Si "flèche bas"
+            if position_perso_map_V != 14:
+                if map1[position_perso_map_V + 1][position_perso_map_H] != 'W':
 
-                # On descend le perso GRAPHIQUEMENT
-                position_pixel_perso = position_pixel_perso.move(0, hauteur_case)
+                    # On descend le perso GRAPHIQUEMENT
+                    position_pixel_perso = position_pixel_perso.move(0, hauteur_case)
 
-                # On descend le perso PHYSIQUEMENT
-                position_perso_map_V = position_perso_map_V + 1
+                    # On descend le perso PHYSIQUEMENT
+                    position_perso_map_V = position_perso_map_V + 1
 
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a l'horizontal : " + str(position_perso_map_V))
-                print(map1[position_perso_map_V][position_perso_map_H])
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a l'horizontal : " + str(position_perso_map_V))
+                    print(map1[position_perso_map_V][position_perso_map_H])
 
-            else:
-                print("mur deplacement vers le bas impossible")
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
-
-
-    elif event.key == K_UP:  # Si "flèche haut
-        if position_perso_map_V != 0:
-            if map1[position_perso_map_V - 1][position_perso_map_H] != 'W':
-
-                # On monte le perso GRAPHIQUEMENT
-                position_pixel_perso = position_pixel_perso.move(0, -hauteur_case)
-
-                # On monte le perso PHYSIQUEMENT
-                position_perso_map_V = position_perso_map_V - 1
-
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
-                print(map1[position_perso_map_V][position_perso_map_H])
-
-            else:
-                print("mur deplacement vers le haut impossible")
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
+                else:
+                    print("mur deplacement vers le bas impossible")
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
 
 
+        elif event.key == K_UP:  # Si "flèche haut
+            if position_perso_map_V != 0:
+                if map1[position_perso_map_V - 1][position_perso_map_H] != 'W':
 
-    elif event.key == K_LEFT:  # Si "flèche gauche"
-        if position_perso_map_H != 0:
-            if map1[position_perso_map_V][position_perso_map_H - 1] != 'W':
+                    # On monte le perso GRAPHIQUEMENT
+                    position_pixel_perso = position_pixel_perso.move(0, -hauteur_case)
 
-                # Le perso va à gauche GRAPHIQUEMENT
-                position_pixel_perso = position_pixel_perso.move(-longueur_case, 0)
+                    # On monte le perso PHYSIQUEMENT
+                    position_perso_map_V = position_perso_map_V - 1
 
-                # Le perso va à gauche PHYSIQUEMENT
-                position_perso_map_H = position_perso_map_H - 1
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
+                    print(map1[position_perso_map_V][position_perso_map_H])
 
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
-                print(map1[position_perso_map_V][position_perso_map_H])
-
-            else:
-                print("mur deplacement vers la gauche impossible")
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
+                else:
+                    print("mur deplacement vers le haut impossible")
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
 
 
 
-    elif event.key == K_RIGHT:  # Si "flèche droite"
-        if position_perso_map_H != 14:
-            if map1[position_perso_map_V][position_perso_map_H + 1] != 'W':
-                # Le perso va à droite GRAPHIQUEMENT
-                position_pixel_perso = position_pixel_perso.move(longueur_case, 0)
+        elif event.key == K_LEFT:  # Si "flèche gauche"
+            if position_perso_map_H != 0:
+                if map1[position_perso_map_V][position_perso_map_H - 1] != 'W':
 
-                # Le perso va à droite PHYSIQUEMENT
-                position_perso_map_H = position_perso_map_H + 1
+                    # Le perso va à gauche GRAPHIQUEMENT
+                    position_pixel_perso = position_pixel_perso.move(-longueur_case, 0)
 
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
-                print(map1[position_perso_map_V][position_perso_map_H])
+                    # Le perso va à gauche PHYSIQUEMENT
+                    position_perso_map_H = position_perso_map_H - 1
 
-            else:
-                print("mur deplacement vers la droite impossible")
-                print("position dans map a l'horizontal : " + str(position_perso_map_H))
-                print("position dans map a la vertical : " + str(position_perso_map_V))
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
+                    print(map1[position_perso_map_V][position_perso_map_H])
+
+                else:
+                    print("mur deplacement vers la gauche impossible")
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
+
+
+
+        elif event.key == K_RIGHT:  # Si "flèche droite"
+            if position_perso_map_H != 14:
+                if map1[position_perso_map_V][position_perso_map_H + 1] != 'W':
+                    # Le perso va à droite GRAPHIQUEMENT
+                    position_pixel_perso = position_pixel_perso.move(longueur_case, 0)
+
+                    # Le perso va à droite PHYSIQUEMENT
+                    position_perso_map_H = position_perso_map_H + 1
+
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
+                    print(map1[position_perso_map_V][position_perso_map_H])
+
+                else:
+                    print("mur deplacement vers la droite impossible")
+                    print("position dans map a l'horizontal : " + str(position_perso_map_H))
+                    print("position dans map a la vertical : " + str(position_perso_map_V))
+
+def fin_jeu():
+
+    global image_gagnez
+    global image_mort
+
+    global gagnez_jeu
+    global sortir_du_jeu
+    global ligne_map
+    global perdu_jeu
+    global continuer_accueil
+    global continuer_jeu
+
+    global boucle_accueil
+    global boucle_jeu
+    global boucle_principale
+    global boucle_recommencer
+
+    global position_pixel_mort
+    global position_pixel_gagnez
+
+    # Si il a trouver tous les objets il gagne
+    if trouver_ether == True and trouver_aiguille == True and trouver_tube == True:
+        gagnez_jeu = True
+        print("Vous avez gagnez")
+        position_pixel_gagnez = (0, 0)
+        image_gagnez = pygame.transform.scale(image_gagnez, (longueur_fenetre, hauteur_fenetre))
+        fenetre.blit(image_gagnez, position_pixel_gagnez)
+
+        # F1 pour recommencer
+        if event.key == K_F1:
+            sortir_du_jeu = True
+            continuer_accueil = 0
+            continuer_jeu = 0
+            boucle_principale = 1
+
+        # F2 pour quitter
+        elif event.key == K_F2:
+            sortir_du_jeu = True
+            continuer_jeu = 0
+            boucle_principale = 0
+
+    # Si il n'a pas trouver tous les objets il meurt
+    elif trouver_ether == False or trouver_aiguille == False or trouver_tube == False:
+        perdu_jeu = True
+        print("Vous etes mort")
+        position_pixel_mort = (0, 0)
+        image_mort = pygame.transform.scale(image_mort, (longueur_fenetre, hauteur_fenetre))
+        fenetre.blit(image_mort, position_pixel_mort)
+
+        # F1 pour recommencer
+        if event.key == K_F1:
+            sortir_du_jeu = True
+            continuer_accueil = 0
+            continuer_jeu = 0
+            boucle_principale = 1
+
+        # F2 pour quitter
+        elif event.key == K_F2:
+            sortir_du_jeu = True
+            continuer_jeu = 0
+            boucle_principale = 0
 
 def recollage ():
 
@@ -179,6 +242,7 @@ while boucle_principale:
     gagnez_jeu = False
     perdu_jeu = False
     sortir_du_jeu = False
+    fin = False
 
     continuer_accueil = 1
     continuer_jeu = 1
@@ -305,49 +369,9 @@ while boucle_principale:
 
                 # Si le perso est sur le gardien
                 elif map1[position_perso_map_V][position_perso_map_H] == 'G':
+                    fin = True
 
-                    #Si il a trouver tous les objets il gagne
-                    if trouver_ether == True and trouver_aiguille == True and trouver_tube == True:
-                        gagnez_jeu = True
-                        print("Vous avez gagnez")
-                        position_pixel_gagnez = (0, 0)
-                        image_gagnez = pygame.transform.scale(image_gagnez, (longueur_fenetre, hauteur_fenetre))
-                        fenetre.blit(image_gagnez, position_pixel_gagnez)
-
-                        # F1 pour recommencer
-                        if event.key == K_F1:
-                            sorir_du_jeu = True
-                            continuer_accueil = 0
-                            continuer_jeu = 0
-                            boucle_principale = 1
-
-                        # F2 pour quitter
-                        elif event.key == K_F2:
-                            sorir_du_jeu = True
-                            continuer_jeu = 0
-                            boucle_principale = 0
-
-                    #Si il n'a pas trouver tous les objets il meurt
-                    elif trouver_ether == False or trouver_aiguille == False or trouver_tube == False:
-                        perdu_jeu = True
-                        print("Vous etes mort")
-                        position_pixel_mort = (0, 0)
-                        image_mort = pygame.transform.scale(image_mort, (longueur_fenetre, hauteur_fenetre))
-                        fenetre.blit(image_mort, position_pixel_mort)
-
-                        #F1 pour recommencer
-                        if event.key == K_F1:
-                            sorir_du_jeu = True
-                            continuer_accueil = 0
-                            continuer_jeu = 0
-                            boucle_principale = 1
-
-                        #F2 pour quitter
-                        elif event.key == K_F2:
-                            sorir_du_jeu = True
-                            continuer_jeu = 0
-                            boucle_principale = 0
-
+                    fin_jeu()
 
         recollage()
 
