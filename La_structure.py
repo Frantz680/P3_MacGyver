@@ -13,9 +13,32 @@ from constantes import *
 """
  Les differentes fonctions
 """
+def ouvrir_fichier():
+
+    global map1
+
+    # On ouvre le ficher texte
+    fichier_texte = open("Laby.txt", "r")  # r = on lit le texte
+    print(fichier_texte)
+
+    map1 = []
+    ligne_map = []
+    compteur = 0
+    for lignes in fichier_texte:
+        ligne_map = []
+        # On lit chaque charactere du fichier
+        for charactere in lignes:
+            if charactere != "\n":
+                ligne_map.append(charactere)
+                # print(ligne_map)
+        map1.append(ligne_map)
+        # print("map1",compteur)
+        # print(map1)
+        compteur = compteur + 1
 
 def mapping():
 
+    global map1
     global position_pixel_depart
     global position_pixel_mur
     global position_pixel_gardien
@@ -121,6 +144,7 @@ def hasard():
 
 def deplacement():
 
+    global map1
     global position_perso_map_V
     global position_perso_map_H
     global position_pixel_perso
@@ -207,6 +231,7 @@ def deplacement():
 
 def gestion_objets_trouve ():
 
+    global map1
     global trouver_ether
     global trouver_tube
     global trouver_aiguille
@@ -241,6 +266,8 @@ def gestion_objets_trouve ():
 
 def recollage ():
 
+    global map1
+
     for position_V_map in range(0, 15):
         for position_H_map in range(0, 15):
             if map1[position_H_map][position_V_map] == 'W':
@@ -267,7 +294,7 @@ def recollage ():
 """
 Le programme principale
 """
-
+ouvrir_fichier()
 boucle_principale = 1
 
 # Boucle principale
@@ -362,6 +389,7 @@ while boucle_principale:
                             perdu_jeu = False
                             gagnez_jeu = False
                             print("recommencer F1")
+                            ouvrir_fichier()
 
                         # F2 pour quitter
                         elif event.key == K_F2:

@@ -1,22 +1,3 @@
-# On ouvre le ficher texte
-fichier_texte = open("Laby.txt", "r")# r = on lit le texte
-print(fichier_texte)
-
-map1 = []
-ligne_map = []
-compteur=0
-for lignes in fichier_texte:
-    ligne_map = []
-    # On lit chaque charactere du fichier
-    for charactere in lignes:
-        if charactere != "\n" :
-            ligne_map.append(charactere)
-            #print(ligne_map)
-    map1.append(ligne_map)
-    #print("map1",compteur)
-    #print(map1)
-    compteur=compteur+1
-
 # Nombre de ligne
 nb_ligne=15
 nb_colonne=15
