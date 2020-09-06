@@ -11,10 +11,10 @@ for lignes in fichier_texte:
     for charactere in lignes:
         if charactere != "\n" :
             ligne_map.append(charactere)
-            print(ligne_map)
+            #print(ligne_map)
     map1.append(ligne_map)
-    print("map1",compteur)
-    print(map1)
+    #print("map1",compteur)
+    #print(map1)
     compteur=compteur+1
 
 # Nombre de ligne
@@ -32,19 +32,12 @@ hauteur_case = hauteur_fenetre // nb_colonne
 position_mur = (0,0)
 position_pixel_mort = (0,0)
 
-position_V=0
-position_H=0
-
 position_perso_map_V=0
 position_perso_map_H=0
 
 position_objet_map_V=0
 position_objet_map_H=0
 
-position_pixel_mort = 0
-position_pixel_mur = 0
-position_pixel_depart = 0
-position_pixel_tube = 0
-position_pixel_ether = 0
-position_pixel_aiguille = 0
-position_pixel_gagnez = 0
+position_pixel_gagnez = (0, 0)
+position_pixel_mort = (0, 0)
+
