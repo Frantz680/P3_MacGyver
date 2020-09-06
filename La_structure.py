@@ -294,7 +294,7 @@ def recollage ():
 """
 Le programme principale
 """
-ouvrir_fichier()
+
 boucle_principale = 1
 
 # Boucle principale
@@ -339,6 +339,7 @@ while boucle_principale:
         perdu_jeu = False
         boucle_jeu = 1
 
+        ouvrir_fichier()
         mapping()
         hasard()
 
@@ -389,7 +390,6 @@ while boucle_principale:
                             perdu_jeu = False
                             gagnez_jeu = False
                             print("recommencer F1")
-                            ouvrir_fichier()
 
                         # F2 pour quitter
                         elif event.key == K_F2:

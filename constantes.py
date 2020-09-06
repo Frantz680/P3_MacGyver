@@ -16,9 +16,6 @@ position_pixel_mort = (0,0)
 position_perso_map_V=0
 position_perso_map_H=0
 
-position_objet_map_V=0
-position_objet_map_H=0
-
 position_pixel_gagnez = (0, 0)
 position_pixel_mort = (0, 0)
 
