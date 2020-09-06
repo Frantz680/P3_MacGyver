@@ -20,6 +20,9 @@ image_ether = pygame.image.load("macgyver_ressources/ressource/ether.png").conve
 image_tube = pygame.image.load("macgyver_ressources/ressource/tube_plastique.png").convert_alpha()
 image_gagnez = pygame.image.load("gagnez.jpg").convert_alpha()
 image_mort = pygame.image.load("mort.png").convert_alpha()
+image_perso = pygame.image.load("macgyver.png").convert_alpha()
+image_accueil = pygame.image.load("accueil.jpg").convert_alpha()
+        
 
 # Création de la dimentions des images
 image_mur = pygame.transform.scale(image_mur, (longueur_case, hauteur_case))
@@ -29,7 +32,14 @@ image_libre = pygame.transform.scale(image_libre, (longueur_case, hauteur_case))
 image_ether = pygame.transform.scale(image_ether, (longueur_case, hauteur_case))
 image_aiguille = pygame.transform.scale(image_aiguille, (longueur_case, hauteur_case))
 image_tube = pygame.transform.scale(image_tube, (longueur_case, hauteur_case))
+image_perso = pygame.transform.scale(image_perso, (longueur_case, hauteur_case))
+image_accueil = pygame.transform.scale(image_accueil, (longueur_fenetre, hauteur_fenetre))
+image_gagnez = pygame.transform.scale(image_gagnez, (longueur_fenetre, hauteur_fenetre))
+image_mort = pygame.transform.scale(image_mort, (longueur_fenetre, hauteur_fenetre))
 
 # Rafraichissement de l'écran
 pygame.display.flip()
 pygame.key.set_repeat(400, 30)
+
+#Limitation de vitesse de la boucle
+pygame.time.Clock().tick(30)
