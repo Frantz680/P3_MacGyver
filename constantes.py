@@ -1,21 +1,21 @@
-# Nombre de ligne
-nb_ligne=15
-nb_colonne=15
+# Number of lines
+nb_lines=15
+nb_column=15
 
-# Dimention fenetre
-longueur_fenetre = 600
-hauteur_fenetre = 600
+# Window dimension
 
-# Dimention case
-longueur_case = longueur_fenetre // nb_ligne
-hauteur_case = hauteur_fenetre // nb_colonne
+window_length = 600
+window_height = 600
 
-position_mur = (0,0)
-position_pixel_mort = (0,0)
+# Case dimension
+case_length = window_length // nb_lines
+case_height = window_height // nb_column
+
+position_wall = (0,0)
+position_pixel_dead = (0,0)
+position_pixel_win = (0,0)
 
 position_perso_map_V=0
 position_perso_map_H=0
 
-position_pixel_gagnez = (0, 0)
-position_pixel_mort = (0, 0)
 
