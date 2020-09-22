@@ -6,7 +6,7 @@ from constantes import *
 pygame.init()
 
 # Opening the Pygame and Title window
-window = pygame.display.set_mode((window_length, window_height), RESIZABLE)
+window = pygame.display.set_mode((WINDOW_LENGTH, WINDOW_HEIGHT), RESIZABLE)
 
 # Title
 pygame.display.set_caption("Aidez MacGyver à s'échapper")
@@ -25,17 +25,17 @@ hero_picture = pygame.image.load("macgyver.png").convert_alpha()
 picture_reception = pygame.image.load("accueil.jpg").convert_alpha()
 
 # Creation of pictures dimensions
-wall_picture = pygame.transform.scale(wall_picture, (case_length, case_height))
-guardian_picture = pygame.transform.scale(guardian_picture, (case_length, case_height))
-starting_picture = pygame.transform.scale(starting_picture, (case_length, case_height))
-free_picture = pygame.transform.scale(free_picture, (case_length, case_height))
-ether_picture = pygame.transform.scale(ether_picture, (case_length, case_height))
-needle_picture = pygame.transform.scale(needle_picture, (case_length, case_height))
-syringe_picture = pygame.transform.scale(syringe_picture, (case_length, case_height))
-hero_picture = pygame.transform.scale(hero_picture, (case_length, case_height))
-picture_reception = pygame.transform.scale(picture_reception, (window_length, window_height))
-picture_win = pygame.transform.scale(picture_win, (window_length, window_height))
-dead_picture = pygame.transform.scale(dead_picture, (window_length, window_height))
+wall_picture = pygame.transform.scale(wall_picture, (CASE_LENGTH, CASE_HEIGHT))
+guardian_picture = pygame.transform.scale(guardian_picture, (CASE_LENGTH, CASE_HEIGHT))
+starting_picture = pygame.transform.scale(starting_picture, (CASE_LENGTH, CASE_HEIGHT))
+free_picture = pygame.transform.scale(free_picture, (CASE_LENGTH, CASE_HEIGHT))
+ether_picture = pygame.transform.scale(ether_picture, (CASE_LENGTH, CASE_HEIGHT))
+needle_picture = pygame.transform.scale(needle_picture, (CASE_LENGTH, CASE_HEIGHT))
+syringe_picture = pygame.transform.scale(syringe_picture, (CASE_LENGTH, CASE_HEIGHT))
+hero_picture = pygame.transform.scale(hero_picture, (CASE_LENGTH, CASE_HEIGHT))
+picture_reception = pygame.transform.scale(picture_reception, (WINDOW_LENGTH, WINDOW_HEIGHT))
+picture_win = pygame.transform.scale(picture_win, (WINDOW_LENGTH, WINDOW_HEIGHT))
+dead_picture = pygame.transform.scale(dead_picture, (WINDOW_LENGTH, WINDOW_HEIGHT))
 
 # Screen refresh
 pygame.display.flip()
