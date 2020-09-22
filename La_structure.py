@@ -4,11 +4,13 @@ Game in which we have to move MacGyver to escape the labyrinth.
 """
 
 from playability import *
+from graphic import *
 
 """
 The main program
 """
 
+# creation of the player object
 player = move_hero()
 
 main_loop = 1
@@ -28,7 +30,6 @@ while main_loop:
 
         # Refreshment
         pygame.display.flip()
-
 
         for event in pygame.event.get():
 
@@ -58,12 +59,8 @@ while main_loop:
     while loop_start_over:
 
         print("loop_start_over")
-        # Resetting variables for when the game starts and restart
-        player.find_syringe = False
-        player.find_ether = False
-        player.find_needle = False
-        player.win_game = False
-        player.lost_game = False
+
+        player.init()
 
         map_choix.open_file()
 
@@ -71,21 +68,18 @@ while main_loop:
 
         map_choix.hazard()
 
-
         # Loading and pasting the character
         map_choix.position_pixel_perso = hero_picture.get_rect()
         window.blit(hero_picture, map_choix.position_pixel_perso)
 
         # reset or initialization of character positions
-        position_perso_map_V = 0
-        position_perso_map_H = 0
         hero_picture.get_rect() == map_choix.map_game[0][0]
 
         game_loop = 1
 
         # Infinite loop
         while game_loop:
-            for event in pygame.event.get(): # Attente des événements
+            for event in pygame.event.get(): # Waiting for events
                 if event.type == QUIT:
                     game_loop = 0
                     main_loop = 0
@@ -95,16 +89,16 @@ while main_loop:
                     player.move(event.key,map_choix)
                     player.management_found_objects(map_choix)
 
-            map_choix.recollage(player.find_syringe, player.find_ether, player.find_needle)
+            map_choix.again_glue(player.find_syringe, player.find_ether, player.find_needle)
 
             while player.lost_game == True or player.win_game == True:
                 
                 if player.win_game == True:
-                    window.blit(picture_win, position_pixel_win)
+                    window.blit(picture_win, POSITION_PIXEL_WIN)
                     pygame.display.flip()
 
                 elif player.lost_game == True:
-                    window.blit(dead_picture, position_pixel_dead)
+                    window.blit(dead_picture, POSITION_PIXEL_DEAD)
                     pygame.display.flip()
                     
                 for event in pygame.event.get(): # Waiting for events

@@ -1,21 +1,16 @@
 # Number of lines
-nb_lines=15
-nb_column=15
+NB_LINES = 15
+NB_COLUMN = 15
 
 # Window dimension
 
-window_length = 600
-window_height = 600
+WINDOW_LENGTH = 600
+WINDOW_HEIGHT = 600
 
 # Case dimension
-case_length = window_length // nb_lines
-case_height = window_height // nb_column
+CASE_LENGTH = WINDOW_LENGTH // NB_LINES
+CASE_HEIGHT = WINDOW_HEIGHT // NB_COLUMN
 
-position_wall = (0,0)
-position_pixel_dead = (0,0)
-position_pixel_win = (0,0)
-
-position_perso_map_V=0
-position_perso_map_H=0
-
-
+POSITION_WALL = (0, 0)
+POSITION_PIXEL_DEAD = (0, 0)
+POSITION_PIXEL_WIN = (0, 0)
