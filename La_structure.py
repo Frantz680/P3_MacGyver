@@ -10,10 +10,12 @@ from graphic import *
 The main program
 """
 
-# creation of the player object
-player = move_hero()
+if __name__ == '__main__':
 
-main_loop = 1
+    # creation of the player object
+    player = move_hero()
+
+    main_loop = 1
 
 # Main loop
 while main_loop:
