@@ -5,7 +5,7 @@ from constantes import *
 to place the objects."""
 
 
-class move_hero():
+class MoveHero():
 
     """We build the constructor."""
     def __init__(self):
