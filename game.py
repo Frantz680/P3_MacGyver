@@ -6,15 +6,11 @@ Game in which we have to move MacGyver to escape the labyrinth.
 from playability import *
 from graphic import *
 
-"""
-The class
-"""
-
 
 class Game():
-
-    # creation of the player object
-    player = MoveHero()
+    """
+    This class is used for the operation of the games.
+    """
 
     main_loop = 1
 
@@ -29,7 +25,7 @@ class Game():
 
             # Loading and viewing the home screen
             position_pixel_reception = (0, 0)
-            window.blit(picture_reception, position_pixel_reception)
+            window.blit(picture_home, position_pixel_reception)
 
             # Refreshment
             pygame.display.flip()
@@ -47,36 +43,36 @@ class Game():
                         loop_reception = 0
                         loop_start_over = 1
                         print("reception F1")
-                        map_choix = Graphic("laby.txt")
+                        map = Graphic("laby.txt")
 
                     elif event.key == K_F2:
                         loop_reception = 0
                         loop_start_over = 1
-                        map_choix = Graphic("laby_moyen.txt")
+                        map = Graphic("laby_moyen.txt")
 
                     elif event.key == K_F3:
                         loop_reception = 0
                         loop_start_over = 1
-                        map_choix = Graphic("laby_difficile.txt")
+                        map = Graphic("laby_difficile.txt")
 
         while loop_start_over:
 
             print("loop_start_over")
 
-            player.init()
+            player = MoveHero()
 
-            map_choix.open_file()
+            map.open_file()
 
-            map_choix.mapping()
+            map.mapping()
 
-            map_choix.hazard()
+            map.hazard()
 
             # Loading and pasting the character
-            map_choix.position_pixel_perso = hero_picture.get_rect()
-            window.blit(hero_picture, map_choix.position_pixel_perso)
+            map.pixel_hero = hero_picture.get_rect()
+            window.blit(hero_picture, map.pixel_hero)
 
             # reset or initialization of character positions
-            hero_picture.get_rect() == map_choix.map_game[0][0]
+            hero_picture.get_rect() == map.map_game[0][0]
 
             game_loop = 1
 
@@ -89,18 +85,18 @@ class Game():
                         loop_start_over = 0
 
                     elif event.type == KEYDOWN:
-                        player.move(event.key, map_choix)
-                        player.management_found_objects(map_choix)
+                        player.move(event.key, map)
+                        player.management_found_objects(map)
 
-                map_choix.again_glue(player.find_syringe, player.find_ether, player.find_needle)
+                map.again_glue(player.find_s, player.find_e, player.find_n)
 
-                while player.lost_game == True or player.win_game == True:
+                while player.lost_game or player.win_game:
 
-                    if player.win_game == True:
+                    if player.win_game:
                         window.blit(picture_win, POSITION_PIXEL_WIN)
                         pygame.display.flip()
 
-                    elif player.lost_game == True:
+                    elif player.lost_game:
                         window.blit(dead_picture, POSITION_PIXEL_DEAD)
                         pygame.display.flip()
 
@@ -131,13 +127,10 @@ class Game():
                                 print("quit F2")
 
 
-"""
-Function
-"""
-
-
 def main():
-
+    """
+    Function
+    """
     Game()
 
 

@@ -1,24 +1,33 @@
+"""
+This class allows you to place images and objects randomly
+"""
+
 from random import *
 
 from init_pygame import *
 from constantes import *
 
-"""This class is used to display 
-the images and to open the file.
+"""
+Import from random library
+
+Import of entire modules
 """
 
 
 class Graphic():
+    """This class is used to display
+    the images and to open the file.
+    """
 
-    """We build the constructor."""
     def __init__(self, p_file):
+        """We build the constructor."""
         self.file = p_file
-        self.position_pixel_perso = [0][0]
+        self.pixel_hero = [0][0]
 
-    """We open the file, 
-    read it and copy it to a chain."""
     def open_file(self):
-
+        """We open the file,
+        read it and copy it to a chain.
+        """
         # We open the text file
         text_file = open(self.file, "r")  # r = we read the text
         print(text_file)
@@ -40,113 +49,110 @@ class Graphic():
 
         self.map_game = local_map_game
 
-    """We paste the images"""
     def mapping(self):
-
+        """We paste the images"""
         # We browse all the rows of the table to see the characters
-        for position_V_map in range(0, 15):
-            for position_H_map in range(0, 15):
+        for position_V in range(0, 15):
+            for position_H in range(0, 15):
 
                 # to each character that corresponds we paste an image
-                if self.map_game[position_H_map][position_V_map] == 'W':
-                    position_pixel_wall = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(wall_picture, position_pixel_wall)
+                if self.map_game[position_H][position_V] == 'W':
+                    pixel_wall = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(wall_picture, pixel_wall)
 
-                elif self.map_game[position_H_map][position_V_map] == 'G':
-                    self.position_pixel_guardian = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(guardian_picture, self.position_pixel_guardian)
+                elif self.map_game[position_H][position_V] == 'G':
+                    self.pixel_g = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(guardian_picture, self.pixel_g)
 
-                elif self.map_game[position_H_map][position_V_map] == 'S':
-                    self.position_pixel_starting = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(starting_picture, self.position_pixel_starting)
+                elif self.map_game[position_H][position_V] == 'S':
+                    self.pixel_start = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(starting_picture, self.pixel_start)
 
                 else:
-                    position_pixel_free = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(free_picture, position_pixel_free)
+                    pixel_free = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(free_picture, pixel_free)
 
-    """Randomly placing objects"""
     def hazard(self):
-
+        """Randomly placing objects"""
         # choose a random number in the map for ether
         position_ether = 'E'
         nb_hazard_ether = 0
-        random_number_ether_H = randint(0, 14)
-        random_number_ether_V = randint(0, 14)
+        random_ether_H = randint(0, 14)
+        random_ether_V = randint(0, 14)
 
         # As long as the random number is different from the free cells
         while nb_hazard_ether != 'F':
-            random_number_ether_H = randint(0, 14)
-            random_number_ether_V = randint(0, 14)
-            nb_hazard_ether = self.map_game[random_number_ether_V][random_number_ether_H]
+            random_ether_H = randint(0, 14)
+            random_ether_V = randint(0, 14)
+            nb_hazard_ether = self.map_game[random_ether_V][random_ether_H]
 
             # Once the number obtained we paste the image
-            self.position_pixel_ether = (CASE_LENGTH * random_number_ether_H, CASE_HEIGHT * random_number_ether_V)
-            window.blit(ether_picture, self.position_pixel_ether)
+            self.pixel_ether = (CASE_L*random_ether_H, CASE_H*random_ether_V)
+            window.blit(ether_picture, self.pixel_ether)
 
         # We say that the position is equal to the character given
-        self.map_game[random_number_ether_V][random_number_ether_H] = position_ether
+        self.map_game[random_ether_V][random_ether_H] = position_ether
 
         # choose a random number in the map for the needle
         position_needle = 'A'
         nb_hazard_needle = 0
-        random_number_needle_H = randint(0, 14)
-        random_number_needle_V = randint(0, 14)
+        random_needle_H = randint(0, 14)
+        random_needle_V = randint(0, 14)
 
         # As long as the random number is different from the free cells
         while nb_hazard_needle != 'F' and nb_hazard_needle != 'A':
-            random_number_needle_H = randint(0, 14)
-            random_number_needle_V = randint(0, 14)
-            nb_hazard_needle = self.map_game[random_number_needle_V][random_number_needle_H]
+            random_needle_H = randint(0, 14)
+            random_needle_V = randint(0, 14)
+            nb_hazard_needle = self.map_game[random_needle_V][random_needle_H]
 
             # Once the number obtained we paste the image
-            self.position_pixel_needle = (CASE_LENGTH * random_number_needle_H, CASE_HEIGHT * random_number_needle_V)
-            window.blit(needle_picture, self.position_pixel_needle)
+            self.pixel_n = (CASE_L*random_needle_H, CASE_H*random_needle_V)
+            window.blit(needle_picture, self.pixel_n)
 
         # We say that the position is equal to the character given
-        self.map_game[random_number_needle_V][random_number_needle_H] = position_needle
+        self.map_game[random_needle_V][random_needle_H] = position_needle
 
         # choose a random number in the map for the syringe
         position_syringe = 'T'
-        nb_hazard_syringe = 0
-        random_number_syringe_H = randint(0, 14)
-        random_number_syringe_V = randint(0, 14)
+        nb_hazard_s = 0
+        random_syringe_H = randint(0, 14)
+        random_syringe_V = randint(0, 14)
 
         # As long as the random number is different from the free cells
-        while nb_hazard_syringe != 'F' and nb_hazard_syringe != 'A' and nb_hazard_syringe != 'T':
-            random_number_syringe_H = randint(0, 14)
-            random_number_syringe_V = randint(0, 14)
-            nb_hazard_syringe = self.map_game[random_number_syringe_V][random_number_syringe_H]
+        while nb_hazard_s != 'F' and nb_hazard_s != 'A' and nb_hazard_s != 'T':
+            random_syringe_H = randint(0, 14)
+            random_syringe_V = randint(0, 14)
+            nb_hazard_s = self.map_game[random_syringe_V][random_syringe_H]
 
             # Once the number obtained we paste the image
-            self.position_pixel_syringe = (CASE_LENGTH * random_number_syringe_H, CASE_HEIGHT * random_number_syringe_V)
-            window.blit(syringe_picture, self.position_pixel_syringe)
+            self.pixel_s = (CASE_L*random_syringe_H, CASE_H*random_syringe_V)
+            window.blit(syringe_picture, self.pixel_s)
 
         # We say that the position is equal to the given character
-        self.map_game[random_number_syringe_V][random_number_syringe_H] = position_syringe
+        self.map_game[random_syringe_V][random_syringe_H] = position_syringe
 
-    """We glue the images again"""
-    def again_glue(self,param_find_syringe,param_find_ether,param_find_needle):
+    def again_glue(self, p_find_s, p_find_e, p_find_n):
+        """We glue the images again"""
 
-        for position_V_map in range(0, 15):
-            for position_H_map in range(0, 15):
-                if self.map_game[position_H_map][position_V_map] == 'W':
-                    position_pixel_wall = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(wall_picture, position_pixel_wall)
+        for position_V in range(0, 15):
+            for position_H in range(0, 15):
+                if self.map_game[position_H][position_V] == 'W':
+                    pixel_wall = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(wall_picture, pixel_wall)
                 else:
-                    position_pixel_free = (CASE_LENGTH * position_V_map, CASE_HEIGHT * position_H_map)
-                    window.blit(free_picture, position_pixel_free)
+                    pixel_free = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(free_picture, pixel_free)
 
-        window.blit(starting_picture, self.position_pixel_starting)
-        window.blit(hero_picture, self.position_pixel_perso)
-        window.blit(guardian_picture, self.position_pixel_guardian)
+        window.blit(starting_picture, self.pixel_start)
+        window.blit(hero_picture, self.pixel_hero)
+        window.blit(guardian_picture, self.pixel_g)
 
-        if param_find_syringe == False:
-            window.blit(syringe_picture, self.position_pixel_syringe)
-        if param_find_ether == False:
-            window.blit(ether_picture, self.position_pixel_ether)
-        if param_find_needle == False:
-            window.blit(needle_picture, self.position_pixel_needle)
+        if not p_find_s:
+            window.blit(syringe_picture, self.pixel_s)
+        if not p_find_e:
+            window.blit(ether_picture, self.pixel_ether)
+        if not p_find_n:
+            window.blit(needle_picture, self.pixel_n)
 
         # Refresh
         pygame.display.flip()
-
