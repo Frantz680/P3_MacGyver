@@ -44,6 +44,3 @@ dead_picture = pygame.transform.scale(dead_picture, (WINDOW_L, WINDOW_H))
 # Screen refresh
 pygame.display.flip()
 pygame.key.set_repeat(400, 30)
-
-# Loop speed limitation
-pygame.time.Clock().tick(30)
