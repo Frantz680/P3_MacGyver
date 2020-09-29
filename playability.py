@@ -3,7 +3,7 @@ The class allows the player to move
 """
 
 from init_pygame import *
-from constantes import *
+from constants import *
 
 
 class MoveHero():
