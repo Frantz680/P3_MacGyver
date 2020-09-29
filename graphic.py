@@ -5,7 +5,7 @@ This class allows you to place images and objects randomly
 from random import *
 
 from init_pygame import *
-from constantes import *
+from constants import *
 
 """
 Import from random library
