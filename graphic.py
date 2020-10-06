@@ -14,7 +14,7 @@ Import of entire modules
 """
 
 
-class Graphic():
+class Graphic:
     """This class is used to display
     the images and to open the file.
     """
@@ -76,41 +76,15 @@ class Graphic():
         """Randomly placing objects"""
         # choose a random number in the map for ether
         position_ether = 'E'
-        nb_hazard_ether = 0
+        nb_hazard_e = 0
         random_ether_H = randint(0, 14)
         random_ether_V = randint(0, 14)
 
-        # As long as the random number is different from the free cells
-        while nb_hazard_ether != 'F':
-            random_ether_H = randint(0, 14)
-            random_ether_V = randint(0, 14)
-            nb_hazard_ether = self.map_game[random_ether_V][random_ether_H]
-
-            # Once the number obtained we paste the image
-            self.pixel_ether = (CASE_L*random_ether_H, CASE_H*random_ether_V)
-            window.blit(ether_picture, self.pixel_ether)
-
-        # We say that the position is equal to the character given
-        self.map_game[random_ether_V][random_ether_H] = position_ether
-
         # choose a random number in the map for the needle
         position_needle = 'A'
-        nb_hazard_needle = 0
+        nb_hazard_n = 0
         random_needle_H = randint(0, 14)
         random_needle_V = randint(0, 14)
-
-        # As long as the random number is different from the free cells
-        while nb_hazard_needle != 'F' and nb_hazard_needle != 'A':
-            random_needle_H = randint(0, 14)
-            random_needle_V = randint(0, 14)
-            nb_hazard_needle = self.map_game[random_needle_V][random_needle_H]
-
-            # Once the number obtained we paste the image
-            self.pixel_n = (CASE_L*random_needle_H, CASE_H*random_needle_V)
-            window.blit(needle_picture, self.pixel_n)
-
-        # We say that the position is equal to the character given
-        self.map_game[random_needle_V][random_needle_H] = position_needle
 
         # choose a random number in the map for the syringe
         position_syringe = 'T'
@@ -119,14 +93,36 @@ class Graphic():
         random_syringe_V = randint(0, 14)
 
         # As long as the random number is different from the free cells
-        while nb_hazard_s != 'F' and nb_hazard_s != 'A' and nb_hazard_s != 'T':
+        while nb_hazard_e != 'F' or nb_hazard_n != 'F' or nb_hazard_s != 'F':
+            random_ether_H = randint(0, 14)
+            random_ether_V = randint(0, 14)
+            nb_hazard_e = self.map_game[random_ether_V][random_ether_H]
+
+            # Once the number obtained we paste the image
+            self.pixel_ether = (CASE_L*random_ether_H, CASE_H*random_ether_V)
+            window.blit(ether_picture, self.pixel_ether)
+
+            random_needle_H = randint(0, 14)
+            random_needle_V = randint(0, 14)
+            nb_hazard_n = self.map_game[random_needle_V][random_needle_H]
+
+            # Once the number obtained we paste the image
+            self.pixel_n = (CASE_L * random_needle_H, CASE_H * random_needle_V)
+            window.blit(needle_picture, self.pixel_n)
+
             random_syringe_H = randint(0, 14)
             random_syringe_V = randint(0, 14)
             nb_hazard_s = self.map_game[random_syringe_V][random_syringe_H]
 
             # Once the number obtained we paste the image
-            self.pixel_s = (CASE_L*random_syringe_H, CASE_H*random_syringe_V)
+            self.pixel_s = (CASE_L * random_syringe_H, CASE_H * random_syringe_V)
             window.blit(syringe_picture, self.pixel_s)
+
+        # We say that the position is equal to the character given
+        self.map_game[random_ether_V][random_ether_H] = position_ether
+
+        # We say that the position is equal to the character given
+        self.map_game[random_needle_V][random_needle_H] = position_needle
 
         # We say that the position is equal to the given character
         self.map_game[random_syringe_V][random_syringe_H] = position_syringe

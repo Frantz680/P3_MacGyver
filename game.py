@@ -3,17 +3,19 @@ Game Help MacGyver escape!
 Game in which we have to move MacGyver to escape the labyrinth.
 """
 
-from playability import *
+from movehero import *
 from graphic import *
 
 
-class Game():
+class Game:
     """
     This class is used for the operation of the games.
     """
 
-    def run(self):
-
+    def game_lauch(self):
+        """
+        game launch
+        """
         loop_reception = 1
         loop_restart = 1
 
@@ -31,7 +33,6 @@ class Game():
 
                 if event.type == QUIT:
                     loop_reception = 0
-                    loop_game = 0
                     loop_restart = 0
 
                 elif event.type == KEYDOWN:
@@ -39,17 +40,17 @@ class Game():
                         loop_reception = 0
                         loop_restart = 1
                         print("reception F1")
-                        map = Graphic("laby.txt")
+                        map = Graphic("labyrinth/laby.txt")
 
                     elif event.key == K_F2:
                         loop_reception = 0
                         loop_restart = 1
-                        map = Graphic("laby_moyen.txt")
+                        map = Graphic("labyrinth/laby_moyen.txt")
 
                     elif event.key == K_F3:
                         loop_reception = 0
                         loop_restart = 1
-                        map = Graphic("laby_difficile.txt")
+                        map = Graphic("labyrinth/laby_difficile.txt")
 
         while loop_restart:
 
@@ -124,7 +125,7 @@ def main():
     Function
     """
     game = Game()
-    game.run()
+    game.game_lauch()
 
 
 """
