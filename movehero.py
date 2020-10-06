@@ -6,7 +6,7 @@ from init_pygame import *
 from constants import *
 
 
-class MoveHero():
+class MoveHero:
     """
     This class serves to move the hero but also
     to place the objects.
