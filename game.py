@@ -60,17 +60,18 @@ class Game:
 
             map.open_file()
 
-            map.mapping()
-
-            map.hazard()
+            map.hazard("N")
+            map.hazard("E")
+            map.hazard("P")
 
             # Loading and pasting the character
-            map.pixel_hero = hero_picture.get_rect()
-            window.blit(hero_picture, map.pixel_hero)
+            map.pixel_hero = map.hero_picture.get_rect()
+            window.blit(map.hero_picture, map.pixel_hero)
 
             # reset or initialization of character positions
-            hero_picture.get_rect() == map.map_game[0][0]
+            map.hero_picture.get_rect() == map.map_game[0][0]
 
+            map.mapping()
             loop_game = 1
 
             while loop_game:
@@ -83,16 +84,16 @@ class Game:
                         player.move(event.key, map)
                         player.management_found_objects(map)
 
-                map.again_glue(player.find_s, player.find_e, player.find_n)
+                map.mapping()
 
                 while player.lost_game or player.win_game:
 
                     if player.win_game:
-                        window.blit(picture_win, POSITION_PIXEL_WIN)
+                        window.blit(map.picture_win, POSITION_PIXEL_WIN)
                         pygame.display.flip()
 
                     elif player.lost_game:
-                        window.blit(dead_picture, POSITION_PIXEL_DEAD)
+                        window.blit(map.dead_picture, POSITION_PIXEL_DEAD)
                         pygame.display.flip()
 
                     for event in pygame.event.get():  # Waiting for events

@@ -22,7 +22,36 @@ class Graphic:
     def __init__(self, p_file):
         """We build the constructor."""
         self.file = p_file
-        self.pixel_hero = [0][0]
+
+        self.pixel_n = 0
+        self.pixel_ether = 0
+        self.pixel_s = 0
+
+        # Loading pictures
+        self.wall_picture = pygame.image.load("pictures/Mur.png").convert_alpha()
+        self.free_picture = pygame.image.load("pictures/libre.png").convert_alpha()
+        self.starting_picture = pygame.image.load("pictures/arriver.png").convert_alpha()
+        self.guardian_picture = pygame.image.load("pictures/gardien.png").convert_alpha()
+        self.needle_picture = pygame.image.load("pictures/aiguille.png").convert_alpha()
+        self.ether_picture = pygame.image.load("pictures/ether.png").convert_alpha()
+        self.syringe_picture = pygame.image.load("pictures/seringue.png").convert_alpha()
+        self.hero_picture = pygame.image.load("pictures/macgyver.png").convert_alpha()
+        self.dead_picture = pygame.image.load("pictures/mort.png").convert_alpha()
+        self.picture_win = pygame.image.load("pictures/gagnez.jpg").convert_alpha()
+
+        # Creation of pictures dimensions
+        self.wall_picture = pygame.transform.scale(self.wall_picture, (CASE_L, CASE_H))
+        self.guardian_picture = pygame.transform.scale(self.guardian_picture, (CASE_L, CASE_H))
+        self.starting_picture = pygame.transform.scale(self.starting_picture, (CASE_L, CASE_H))
+        self.free_picture = pygame.transform.scale(self.free_picture, (CASE_L, CASE_H))
+        self.ether_picture = pygame.transform.scale(self.ether_picture, (CASE_L, CASE_H))
+        self.needle_picture = pygame.transform.scale(self.needle_picture, (CASE_L, CASE_H))
+        self.syringe_picture = pygame.transform.scale(self.syringe_picture, (CASE_L, CASE_H))
+        self.hero_picture = pygame.transform.scale(self.hero_picture, (CASE_L, CASE_H))
+        self.dead_picture = pygame.transform.scale(self.dead_picture, (WINDOW_L, WINDOW_H))
+        self.picture_win = pygame.transform.scale(self.picture_win, (WINDOW_L, WINDOW_H))
+
+        self.pixel_hero = self.hero_picture.get_rect()
 
     def open_file(self):
         """We open the file,
@@ -51,104 +80,60 @@ class Graphic:
 
     def mapping(self):
         """We paste the images"""
+
         # We browse all the rows of the table to see the characters
+
         for position_V in range(0, 15):
             for position_H in range(0, 15):
 
                 # to each character that corresponds we paste an image
                 if self.map_game[position_H][position_V] == 'W':
                     pixel_wall = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(wall_picture, pixel_wall)
+                    window.blit(self.wall_picture, pixel_wall)
 
                 elif self.map_game[position_H][position_V] == 'G':
                     self.pixel_g = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(guardian_picture, self.pixel_g)
+                    window.blit(self.free_picture, self.pixel_g)
+                    window.blit(self.guardian_picture, self.pixel_g)
 
                 elif self.map_game[position_H][position_V] == 'S':
                     self.pixel_start = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(starting_picture, self.pixel_start)
+                    window.blit(self.starting_picture, self.pixel_start)
+
+                elif self.map_game[position_H][position_V] == 'N':
+                    self.pixel_n = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(self.needle_picture, self.pixel_n)
+
+                elif self.map_game[position_H][position_V] == 'P':
+                    self.pixel_s = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(self.syringe_picture, self.pixel_s)
+
+                elif self.map_game[position_H][position_V] == 'E':
+                    self.pixel_ether = (CASE_L*position_V, CASE_H*position_H)
+                    window.blit(self.ether_picture, self.pixel_ether)
 
                 else:
                     pixel_free = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(free_picture, pixel_free)
+                    window.blit(self.free_picture, pixel_free)
 
-    def hazard(self):
-        """Randomly placing objects"""
-        # choose a random number in the map for ether
-        position_ether = 'E'
-        nb_hazard_e = 0
-        random_ether_H = randint(0, 14)
-        random_ether_V = randint(0, 14)
-
-        # choose a random number in the map for the needle
-        position_needle = 'A'
-        nb_hazard_n = 0
-        random_needle_H = randint(0, 14)
-        random_needle_V = randint(0, 14)
-
-        # choose a random number in the map for the syringe
-        position_syringe = 'T'
-        nb_hazard_s = 0
-        random_syringe_H = randint(0, 14)
-        random_syringe_V = randint(0, 14)
-
-        # As long as the random number is different from the free cells
-        while nb_hazard_e != 'F' or nb_hazard_n != 'F' or nb_hazard_s != 'F':
-            random_ether_H = randint(0, 14)
-            random_ether_V = randint(0, 14)
-            nb_hazard_e = self.map_game[random_ether_V][random_ether_H]
-
-            # Once the number obtained we paste the image
-            self.pixel_ether = (CASE_L*random_ether_H, CASE_H*random_ether_V)
-            window.blit(ether_picture, self.pixel_ether)
-
-            random_needle_H = randint(0, 14)
-            random_needle_V = randint(0, 14)
-            nb_hazard_n = self.map_game[random_needle_V][random_needle_H]
-
-            # Once the number obtained we paste the image
-            self.pixel_n = (CASE_L * random_needle_H, CASE_H * random_needle_V)
-            window.blit(needle_picture, self.pixel_n)
-
-            random_syringe_H = randint(0, 14)
-            random_syringe_V = randint(0, 14)
-            nb_hazard_s = self.map_game[random_syringe_V][random_syringe_H]
-
-            # Once the number obtained we paste the image
-            self.pixel_s = (CASE_L * random_syringe_H, CASE_H * random_syringe_V)
-            window.blit(syringe_picture, self.pixel_s)
-
-        # We say that the position is equal to the character given
-        self.map_game[random_ether_V][random_ether_H] = position_ether
-
-        # We say that the position is equal to the character given
-        self.map_game[random_needle_V][random_needle_H] = position_needle
-
-        # We say that the position is equal to the given character
-        self.map_game[random_syringe_V][random_syringe_H] = position_syringe
-
-    def again_glue(self, p_find_s, p_find_e, p_find_n):
-        """We glue the images again"""
-
-        for position_V in range(0, 15):
-            for position_H in range(0, 15):
-                if self.map_game[position_H][position_V] == 'W':
-                    pixel_wall = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(wall_picture, pixel_wall)
-                else:
-                    pixel_free = (CASE_L*position_V, CASE_H*position_H)
-                    window.blit(free_picture, pixel_free)
-
-        window.blit(starting_picture, self.pixel_start)
-        window.blit(hero_picture, self.pixel_hero)
-        window.blit(guardian_picture, self.pixel_g)
-
-        if not p_find_s:
-            window.blit(syringe_picture, self.pixel_s)
-        if not p_find_e:
-            window.blit(ether_picture, self.pixel_ether)
-        if not p_find_n:
-            window.blit(needle_picture, self.pixel_n)
+        window.blit(self.hero_picture, self.pixel_hero)
 
         # Refresh
         pygame.display.flip()
+
+    def hazard(self, charactere_picture):
+        """Randomly placing objects"""
+
+        case_hazard = ""
+
+        while case_hazard != 'F':
+
+            random_picture_H = randint(0, 14)
+            random_picture_V = randint(0, 14)
+            case_hazard = self.map_game[random_picture_H][random_picture_V]
+
+        # We say that the position is equal to the given character
+        self.map_game[random_picture_H][random_picture_V] = charactere_picture
+
+    def init_case(self, position_V, position_H):
+        self.map_game[position_V][position_H] = "F"

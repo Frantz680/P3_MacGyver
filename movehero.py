@@ -112,14 +112,17 @@ class MoveHero:
 
         # If the hero goes on the object, the value becomes true
         if p_map.map_game[self.map_hero_V][self.map_hero_H] == 'E':
+            p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You found the ether")
             self.find_e = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'T':
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'P':
+            p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You have found the syringe")
             self.find_s = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'A':
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'N':
+            p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You found the needle")
             self.find_n = True
 
