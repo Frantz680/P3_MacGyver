@@ -34,4 +34,5 @@ Explication :
 
 -python game.py
 Ceci vous lancera automatiquement le jeu.
+![Labyrinthe-jeu](https://user-images.githubusercontent.com/68595779/95330949-9196b380-08a9-11eb-924c-3754e6a555ea.png)
 
