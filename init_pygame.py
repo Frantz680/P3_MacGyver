@@ -9,7 +9,7 @@ from constants import *
 
 pygame.init()
 
-# Opening the Pygame and Title window
+# Opening the pygame and Title window
 window = pygame.display.set_mode((WINDOW_L, WINDOW_H), RESIZABLE)
 
 # Title

@@ -119,10 +119,19 @@ class Graphic:
         # Refresh
         pygame.display.flip()
 
-    def hazard(self, charactere_picture):
+    def creation_hero(self):
+        """Creation de macgyver"""
+        # Loading and pasting the character
+        self.pixel_hero = self.hero_picture.get_rect()
+        window.blit(self.hero_picture, self.pixel_hero)
+
+        # reset or initialization of character positions
+        self.hero_picture.get_rect() == self.map_game[0][0]
+
+    def hazard(self, letter_picture):
         """Randomly placing objects"""
 
-        #On initialise la case_hazard
+        # We initialize the case
         case_hazard = ""
 
         while case_hazard != free:
@@ -132,7 +141,18 @@ class Graphic:
             case_hazard = self.map_game[random_picture_H][random_picture_V]
 
         # We say that the position is equal to the given character
-        self.map_game[random_picture_H][random_picture_V] = charactere_picture
+        self.map_game[random_picture_H][random_picture_V] = letter_picture
 
     def init_case(self, position_V, position_H):
+        """We reset when an object has been found, we put a free case"""
         self.map_game[position_V][position_H] = free
+
+    def win_or_dead(self, param_player):
+        """Display of victory or death images"""
+        if param_player.win_game:
+            window.blit(self.picture_win, POSITION_PIXEL_WIN)
+            pygame.display.flip()
+
+        elif param_player.lost_game:
+            window.blit(self.dead_picture, POSITION_PIXEL_DEAD)
+            pygame.display.flip()

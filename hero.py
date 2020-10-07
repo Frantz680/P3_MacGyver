@@ -1,5 +1,5 @@
 """
-The class allows the player to move
+The class allows to create the hero
 """
 
 from constants import *
@@ -7,8 +7,8 @@ from constants import *
 
 class Hero:
     """
-    This class serves to move the hero but also
-    to place the objects.
+    This class is used to create the hero to move
+    him but also if he picks up objects.
     """
 
     def __init__(self):
@@ -28,7 +28,7 @@ class Hero:
         We move the person.
         """
 
-        if p_event == "bas":  # If "down arrow"
+        if p_event == "down":  # If "down arrow"
             if self.map_hero_V != 14:
                 if p_map.map_game[self.map_hero_V+1][self.map_hero_H] != wall:
 
@@ -47,7 +47,7 @@ class Hero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == "haut":  # If "up arrow"
+        elif p_event == "up":  # If "up arrow"
             if self.map_hero_V != 0:
                 if p_map.map_game[self.map_hero_V-1][self.map_hero_H] != wall:
 
@@ -66,7 +66,7 @@ class Hero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == "gauche":  # If "left arrow"
+        elif p_event == "left":  # If "left arrow"
             if self.map_hero_H != 0:
                 if p_map.map_game[self.map_hero_V][self.map_hero_H-1] != wall:
 
@@ -85,7 +85,7 @@ class Hero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == "droite":  # If "right arrow"
+        elif p_event == "right":  # If "right arrow"
             if self.map_hero_H != 14:
                 if p_map.map_game[self.map_hero_V][self.map_hero_H+1] != wall:
 
@@ -111,7 +111,7 @@ class Hero:
 
         # If the hero goes on the object, the value becomes true
         if p_map.map_game[self.map_hero_V][self.map_hero_H] == ether:
-            p_map.init_case(self.map_hero_V, self.map_hero_H)
+            p_map.init_case(self.map_hero_V, self.map_hero_H) # Permet de mettre la case en libre
             print("You found the ether")
             self.find_e = True
 

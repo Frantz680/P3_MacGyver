@@ -14,12 +14,12 @@ WINDOW_H = 600
 CASE_L = WINDOW_L // NB_LINES
 CASE_H = WINDOW_H // NB_COLUMN
 
-# Positionnement des images
+# pictures positioning
 POSITION_PIXEL_DEAD = (0, 0)
 POSITION_PIXEL_WIN = (0, 0)
 position_pixel_reception = (0, 0)
 
-# Valeur des images
+# pictures letters
 needle = "N"
 syringe = "P"
 ether = "E"
