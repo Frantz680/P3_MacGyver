@@ -63,12 +63,7 @@ class Game:
             map.hazard(ether)
             map.hazard(syringe)
 
-            # Loading and pasting the character
-            map.pixel_hero = map.hero_picture.get_rect()
-            window.blit(map.hero_picture, map.pixel_hero)
-
-            # reset or initialization of character positions
-            map.hero_picture.get_rect() == map.map_game[0][0]
+            map.creation_hero()
 
             map.mapping()
             loop_game = 1
@@ -81,26 +76,20 @@ class Game:
 
                     elif event.type == KEYDOWN:
                         if event.key == K_DOWN:
-                            player.move("bas", map)
+                            player.move("down", map)
                         elif event.key == K_UP:
-                            player.move("haut", map)
+                            player.move("up", map)
                         elif event.key == K_LEFT:
-                            player.move("gauche", map)
+                            player.move("left", map)
                         elif event.key == K_RIGHT:
-                            player.move("droite", map)
+                            player.move("right", map)
                         player.management_found_objects(map)
 
                 map.mapping()
 
                 while player.lost_game or player.win_game:
 
-                    if player.win_game:
-                        window.blit(map.picture_win, POSITION_PIXEL_WIN)
-                        pygame.display.flip()
-
-                    elif player.lost_game:
-                        window.blit(map.dead_picture, POSITION_PIXEL_DEAD)
-                        pygame.display.flip()
+                    map.win_or_dead(player)
 
                     for event in pygame.event.get():  # Waiting for events
                         if event.type == QUIT:
