@@ -51,8 +51,6 @@ class Graphic:
         self.dead_picture = pygame.transform.scale(self.dead_picture, (WINDOW_L, WINDOW_H))
         self.picture_win = pygame.transform.scale(self.picture_win, (WINDOW_L, WINDOW_H))
 
-        self.pixel_hero = self.hero_picture.get_rect()
-
     def open_file(self):
         """We open the file,
         read it and copy it to a chain.
@@ -87,28 +85,28 @@ class Graphic:
             for position_H in range(0, 15):
 
                 # to each character that corresponds we paste an image
-                if self.map_game[position_H][position_V] == 'W':
+                if self.map_game[position_H][position_V] == wall:
                     pixel_wall = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.wall_picture, pixel_wall)
 
-                elif self.map_game[position_H][position_V] == 'G':
+                elif self.map_game[position_H][position_V] == guardian:
                     self.pixel_g = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.free_picture, self.pixel_g)
                     window.blit(self.guardian_picture, self.pixel_g)
 
-                elif self.map_game[position_H][position_V] == 'S':
+                elif self.map_game[position_H][position_V] == starting:
                     self.pixel_start = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.starting_picture, self.pixel_start)
 
-                elif self.map_game[position_H][position_V] == 'N':
+                elif self.map_game[position_H][position_V] == needle:
                     self.pixel_n = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.needle_picture, self.pixel_n)
 
-                elif self.map_game[position_H][position_V] == 'P':
+                elif self.map_game[position_H][position_V] == syringe:
                     self.pixel_s = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.syringe_picture, self.pixel_s)
 
-                elif self.map_game[position_H][position_V] == 'E':
+                elif self.map_game[position_H][position_V] == ether:
                     self.pixel_ether = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.ether_picture, self.pixel_ether)
 
@@ -124,9 +122,10 @@ class Graphic:
     def hazard(self, charactere_picture):
         """Randomly placing objects"""
 
+        #On initialise la case_hazard
         case_hazard = ""
 
-        while case_hazard != 'F':
+        while case_hazard != free:
 
             random_picture_H = randint(0, 14)
             random_picture_V = randint(0, 14)
@@ -136,4 +135,4 @@ class Graphic:
         self.map_game[random_picture_H][random_picture_V] = charactere_picture
 
     def init_case(self, position_V, position_H):
-        self.map_game[position_V][position_H] = "F"
+        self.map_game[position_V][position_H] = free

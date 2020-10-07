@@ -2,11 +2,10 @@
 The class allows the player to move
 """
 
-from init_pygame import *
 from constants import *
 
 
-class MoveHero:
+class Hero:
     """
     This class serves to move the hero but also
     to place the objects.
@@ -29,9 +28,9 @@ class MoveHero:
         We move the person.
         """
 
-        if p_event == K_DOWN:  # If "down arrow"
+        if p_event == "bas":  # If "down arrow"
             if self.map_hero_V != 14:
-                if p_map.map_game[self.map_hero_V+1][self.map_hero_H] != 'W':
+                if p_map.map_game[self.map_hero_V+1][self.map_hero_H] != wall:
 
                     # We go down the hero GRAPHICALLY
                     p_map.pixel_hero = p_map.pixel_hero.move(0, CASE_H)
@@ -48,9 +47,9 @@ class MoveHero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == K_UP:  # If "up arrow"
+        elif p_event == "haut":  # If "up arrow"
             if self.map_hero_V != 0:
-                if p_map.map_game[self.map_hero_V-1][self.map_hero_H] != 'W':
+                if p_map.map_game[self.map_hero_V-1][self.map_hero_H] != wall:
 
                     # We mount the hero GRAPHICALLY
                     p_map.pixel_hero = p_map.pixel_hero.move(0, -CASE_H)
@@ -67,9 +66,9 @@ class MoveHero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == K_LEFT:  # If "left arrow"
+        elif p_event == "gauche":  # If "left arrow"
             if self.map_hero_H != 0:
-                if p_map.map_game[self.map_hero_V][self.map_hero_H-1] != 'W':
+                if p_map.map_game[self.map_hero_V][self.map_hero_H-1] != wall:
 
                     # The hero goes left GRAPHICALLY
                     p_map.pixel_hero = p_map.pixel_hero.move(-CASE_L, 0)
@@ -86,9 +85,9 @@ class MoveHero:
                     print("position in map H : " + str(self.map_hero_H))
                     print("position in map V : " + str(self.map_hero_V))
 
-        elif p_event == K_RIGHT:  # If "right arrow"
+        elif p_event == "droite":  # If "right arrow"
             if self.map_hero_H != 14:
-                if p_map.map_game[self.map_hero_V][self.map_hero_H+1] != 'W':
+                if p_map.map_game[self.map_hero_V][self.map_hero_H+1] != wall:
 
                     # The hero goes right GRAPHICALLY
                     p_map.pixel_hero = p_map.pixel_hero.move(CASE_L, 0)
@@ -111,23 +110,23 @@ class MoveHero:
         """
 
         # If the hero goes on the object, the value becomes true
-        if p_map.map_game[self.map_hero_V][self.map_hero_H] == 'E':
+        if p_map.map_game[self.map_hero_V][self.map_hero_H] == ether:
             p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You found the ether")
             self.find_e = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'P':
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == syringe:
             p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You have found the syringe")
             self.find_s = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'N':
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == needle:
             p_map.init_case(self.map_hero_V, self.map_hero_H)
             print("You found the needle")
             self.find_n = True
 
         # If the hero is on the guardian
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == 'G':
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == guardian:
 
             # If he finds all the objects he wins
             if self.find_e and self.find_n and self.find_s:

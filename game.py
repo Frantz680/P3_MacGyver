@@ -3,7 +3,7 @@ Game Help MacGyver escape!
 Game in which we have to move MacGyver to escape the labyrinth.
 """
 
-from movehero import *
+from hero import *
 from graphic import *
 
 
@@ -23,7 +23,6 @@ class Game:
         while loop_reception:
 
             # Loading and viewing the home screen
-            position_pixel_reception = (0, 0)
             window.blit(picture_home, position_pixel_reception)
 
             # Refreshment
@@ -40,7 +39,7 @@ class Game:
                         loop_reception = 0
                         loop_restart = 1
                         print("reception F1")
-                        map = Graphic("labyrinth/laby.txt")
+                        map = Graphic("labyrinth/laby_facile.txt")
 
                     elif event.key == K_F2:
                         loop_reception = 0
@@ -56,13 +55,13 @@ class Game:
 
             print("loop_restart")
 
-            player = MoveHero()
+            player = Hero()
 
             map.open_file()
 
-            map.hazard("N")
-            map.hazard("E")
-            map.hazard("P")
+            map.hazard(needle)
+            map.hazard(ether)
+            map.hazard(syringe)
 
             # Loading and pasting the character
             map.pixel_hero = map.hero_picture.get_rect()
@@ -81,7 +80,14 @@ class Game:
                         loop_restart = 0
 
                     elif event.type == KEYDOWN:
-                        player.move(event.key, map)
+                        if event.key == K_DOWN:
+                            player.move("bas", map)
+                        elif event.key == K_UP:
+                            player.move("haut", map)
+                        elif event.key == K_LEFT:
+                            player.move("gauche", map)
+                        elif event.key == K_RIGHT:
+                            player.move("droite", map)
                         player.management_found_objects(map)
 
                 map.mapping()
