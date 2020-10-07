@@ -14,5 +14,16 @@ WINDOW_H = 600
 CASE_L = WINDOW_L // NB_LINES
 CASE_H = WINDOW_H // NB_COLUMN
 
+# Positionnement des images
 POSITION_PIXEL_DEAD = (0, 0)
 POSITION_PIXEL_WIN = (0, 0)
+position_pixel_reception = (0, 0)
+
+# Valeur des images
+needle = "N"
+syringe = "P"
+ether = "E"
+guardian = "G"
+wall = "W"
+starting = "S"
+free = "F"
