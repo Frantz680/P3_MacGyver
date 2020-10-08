@@ -17,13 +17,13 @@ CASE_H = WINDOW_H // NB_COLUMN
 # pictures positioning
 POSITION_PIXEL_DEAD = (0, 0)
 POSITION_PIXEL_WIN = (0, 0)
-position_pixel_reception = (0, 0)
+POSITION_PIXEL_RECEPTION = (0, 0)
 
-# pictures letters
-needle = "N"
-syringe = "P"
-ether = "E"
-guardian = "G"
-wall = "W"
-starting = "S"
-free = "F"
+# characters pictures
+NEEDLE = "N"
+SYRINGE = "P"
+ETHER = "E"
+GUARDIAN = "G"
+WALL = "W"
+STARTING = "S"
+FREE = "F"

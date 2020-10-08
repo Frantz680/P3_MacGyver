@@ -4,13 +4,13 @@ This class allows you to place images and objects randomly
 
 from random import *
 
-from init_pygame import *
-from constants import *
+from back_end.init_pygame import *
+from back_end.constants import *
 
 """
 Import from random library
 
-Import of entire modules
+Import of entire file
 """
 
 
@@ -32,7 +32,7 @@ class Graphic:
         self.starting_picture = pygame.image.load("pictures/arriver.png").convert_alpha()
         self.guardian_picture = pygame.image.load("pictures/gardien.png").convert_alpha()
         self.needle_picture = pygame.image.load("pictures/aiguille.png").convert_alpha()
-        self.ether_picture = pygame.image.load("pictures/ether.png").convert_alpha()
+        self.ether_picture = pygame.image.load("pictures/ETHER.png").convert_alpha()
         self.syringe_picture = pygame.image.load("pictures/seringue.png").convert_alpha()
         self.hero_picture = pygame.image.load("pictures/macgyver.png").convert_alpha()
         self.dead_picture = pygame.image.load("pictures/mort.png").convert_alpha()
@@ -53,9 +53,10 @@ class Graphic:
         self.picture_home = pygame.transform.scale(self.picture_home, (WINDOW_L, WINDOW_H))
 
     def reception(self):
+        """home screen display"""
 
         # Loading and viewing the home screen
-        window.blit(self.picture_home, position_pixel_reception)
+        window.blit(self.picture_home, POSITION_PIXEL_RECEPTION)
 
         # Refreshment
         pygame.display.flip()
@@ -94,28 +95,28 @@ class Graphic:
             for position_H in range(0, 15):
 
                 # to each character that corresponds we paste an image
-                if self.map_game[position_H][position_V] == wall:
+                if self.map_game[position_H][position_V] == WALL:
                     pixel_wall = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.wall_picture, pixel_wall)
 
-                elif self.map_game[position_H][position_V] == guardian:
+                elif self.map_game[position_H][position_V] == GUARDIAN:
                     self.pixel_g = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.free_picture, self.pixel_g)
                     window.blit(self.guardian_picture, self.pixel_g)
 
-                elif self.map_game[position_H][position_V] == starting:
+                elif self.map_game[position_H][position_V] == STARTING:
                     self.pixel_start = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.starting_picture, self.pixel_start)
 
-                elif self.map_game[position_H][position_V] == needle:
+                elif self.map_game[position_H][position_V] == NEEDLE:
                     self.pixel_n = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.needle_picture, self.pixel_n)
 
-                elif self.map_game[position_H][position_V] == syringe:
+                elif self.map_game[position_H][position_V] == SYRINGE:
                     self.pixel_s = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.syringe_picture, self.pixel_s)
 
-                elif self.map_game[position_H][position_V] == ether:
+                elif self.map_game[position_H][position_V] == ETHER:
                     self.pixel_ether = (CASE_L*position_V, CASE_H*position_H)
                     window.blit(self.ether_picture, self.pixel_ether)
 
@@ -129,34 +130,33 @@ class Graphic:
         pygame.display.flip()
 
     def creation_hero(self):
-        """Creation de macgyver"""
+        """Creation and positioning Macgyver"""
 
         # Loading and pasting the character
         self.pixel_hero = self.hero_picture.get_rect()
-        window.blit(self.hero_picture, self.pixel_hero)
 
         # reset or initialization of character positions
         self.hero_picture.get_rect() == self.map_game[0][0]
 
-    def hazard(self, letter_picture):
+    def hazard(self, char_picture):
         """Randomly placing objects"""
 
         # We initialize the case
         case_hazard = ""
 
-        while case_hazard != free:
+        while case_hazard != FREE:
 
             random_picture_H = randint(0, 14)
             random_picture_V = randint(0, 14)
             case_hazard = self.map_game[random_picture_H][random_picture_V]
 
         # We say that the position is equal to the given character
-        self.map_game[random_picture_H][random_picture_V] = letter_picture
+        self.map_game[random_picture_H][random_picture_V] = char_picture
 
     def init_case(self, position_V, position_H):
-        """We reset when an object has been found, we put a free case"""
+        """We reset when an object has been found, we put a FREE case"""
 
-        self.map_game[position_V][position_H] = free
+        self.map_game[position_V][position_H] = FREE
 
     def win_or_dead(self, param_player):
         """Display of victory or death images"""

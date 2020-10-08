@@ -3,8 +3,12 @@ Game Help MacGyver escape!
 Game in which we have to move MacGyver to escape the labyrinth.
 """
 
-from hero import *
-from graphic import *
+from front_end.graphic import *
+from back_end.hero import *
+
+"""
+Import of entire file
+"""
 
 
 class Game:
@@ -16,8 +20,12 @@ class Game:
         """
         game launch
         """
+
         loop_reception = 1
         loop_restart = 1
+        labyrinth_easy = False
+        labyrinth_intermediate = False
+        labyrinth_difficult = False
 
         map = Graphic()
 
@@ -37,28 +45,34 @@ class Game:
                         loop_reception = 0
                         loop_restart = 1
                         print("reception F1")
-                        map.open_file("labyrinth/laby_facile.txt")
+                        labyrinth_easy = True
 
                     elif event.key == K_F2:
                         loop_reception = 0
                         loop_restart = 1
-                        map.open_file("labyrinth/laby_moyen.txt")
+                        labyrinth_intermediate = True
 
                     elif event.key == K_F3:
                         loop_reception = 0
                         loop_restart = 1
-                        map.open_file("labyrinth/laby_difficile.txt")
+                        labyrinth_difficult = True
 
         while loop_restart:
 
             print("loop_restart")
 
             player = Hero()
+            if labyrinth_easy:
+                map.open_file("labyrinth/labyrinth_easy.txt")
+            elif labyrinth_intermediate:
+                map.open_file("labyrinth/labyrinth_intermediate.txt")
+            elif labyrinth_difficult:
+                map.open_file("labyrinth/labyrinth_difficult.txt")
             map.creation_hero()
             map.mapping()
-            map.hazard(needle)
-            map.hazard(ether)
-            map.hazard(syringe)
+            map.hazard(NEEDLE)
+            map.hazard(ETHER)
+            map.hazard(SYRINGE)
 
             loop_game = 1
 
@@ -81,8 +95,8 @@ class Game:
                         elif event.key == K_RIGHT:
                             player.move("right", map, 0, 1)
 
-                map.mapping()
                 player.management_found_objects(map)
+                map.mapping()
 
                 while player.lost_game or player.win_game:
 
