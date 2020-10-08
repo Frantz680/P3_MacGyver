@@ -19,9 +19,8 @@ class Graphic:
     the images and to open the file.
     """
 
-    def __init__(self, p_file):
+    def __init__(self):
         """We build the constructor."""
-        self.file = p_file
 
         self.pixel_n = 0
         self.pixel_ether = 0
@@ -38,6 +37,7 @@ class Graphic:
         self.hero_picture = pygame.image.load("pictures/macgyver.png").convert_alpha()
         self.dead_picture = pygame.image.load("pictures/mort.png").convert_alpha()
         self.picture_win = pygame.image.load("pictures/gagnez.jpg").convert_alpha()
+        self.picture_home = pygame.image.load("pictures/accueil.jpg").convert_alpha()
 
         # Creation of pictures dimensions
         self.wall_picture = pygame.transform.scale(self.wall_picture, (CASE_L, CASE_H))
@@ -50,13 +50,22 @@ class Graphic:
         self.hero_picture = pygame.transform.scale(self.hero_picture, (CASE_L, CASE_H))
         self.dead_picture = pygame.transform.scale(self.dead_picture, (WINDOW_L, WINDOW_H))
         self.picture_win = pygame.transform.scale(self.picture_win, (WINDOW_L, WINDOW_H))
+        self.picture_home = pygame.transform.scale(self.picture_home, (WINDOW_L, WINDOW_H))
 
-    def open_file(self):
+    def reception(self):
+
+        # Loading and viewing the home screen
+        window.blit(self.picture_home, position_pixel_reception)
+
+        # Refreshment
+        pygame.display.flip()
+
+    def open_file(self, p_file):
         """We open the file,
         read it and copy it to a chain.
         """
         # We open the text file
-        text_file = open(self.file, "r")  # r = we read the text
+        text_file = open(p_file, "r")  # r = we read the text
         print(text_file)
 
         local_map_game = []
@@ -121,6 +130,7 @@ class Graphic:
 
     def creation_hero(self):
         """Creation de macgyver"""
+
         # Loading and pasting the character
         self.pixel_hero = self.hero_picture.get_rect()
         window.blit(self.hero_picture, self.pixel_hero)
@@ -145,10 +155,12 @@ class Graphic:
 
     def init_case(self, position_V, position_H):
         """We reset when an object has been found, we put a free case"""
+
         self.map_game[position_V][position_H] = free
 
     def win_or_dead(self, param_player):
         """Display of victory or death images"""
+
         if param_player.win_game:
             window.blit(self.picture_win, POSITION_PIXEL_WIN)
             pygame.display.flip()

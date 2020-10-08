@@ -19,14 +19,12 @@ class Game:
         loop_reception = 1
         loop_restart = 1
 
+        map = Graphic()
+
         # Loop reception
         while loop_reception:
 
-            # Loading and viewing the home screen
-            window.blit(picture_home, position_pixel_reception)
-
-            # Refreshment
-            pygame.display.flip()
+            map.reception()
 
             for event in pygame.event.get():
 
@@ -39,33 +37,29 @@ class Game:
                         loop_reception = 0
                         loop_restart = 1
                         print("reception F1")
-                        map = Graphic("labyrinth/laby_facile.txt")
+                        map.open_file("labyrinth/laby_facile.txt")
 
                     elif event.key == K_F2:
                         loop_reception = 0
                         loop_restart = 1
-                        map = Graphic("labyrinth/laby_moyen.txt")
+                        map.open_file("labyrinth/laby_moyen.txt")
 
                     elif event.key == K_F3:
                         loop_reception = 0
                         loop_restart = 1
-                        map = Graphic("labyrinth/laby_difficile.txt")
+                        map.open_file("labyrinth/laby_difficile.txt")
 
         while loop_restart:
 
             print("loop_restart")
 
             player = Hero()
-
-            map.open_file()
-
+            map.creation_hero()
+            map.mapping()
             map.hazard(needle)
             map.hazard(ether)
             map.hazard(syringe)
 
-            map.creation_hero()
-
-            map.mapping()
             loop_game = 1
 
             while loop_game:
@@ -76,16 +70,19 @@ class Game:
 
                     elif event.type == KEYDOWN:
                         if event.key == K_DOWN:
-                            player.move("down", map)
+                            player.move("down", map, 1, 0)
+
                         elif event.key == K_UP:
-                            player.move("up", map)
+                            player.move("up", map, -1, 0)
+
                         elif event.key == K_LEFT:
-                            player.move("left", map)
+                            player.move("left", map, 0, -1)
+
                         elif event.key == K_RIGHT:
-                            player.move("right", map)
-                        player.management_found_objects(map)
+                            player.move("right", map, 0, 1)
 
                 map.mapping()
+                player.management_found_objects(map)
 
                 while player.lost_game or player.win_game:
 
