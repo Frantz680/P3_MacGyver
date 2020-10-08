@@ -23,9 +23,7 @@ class Game:
 
         loop_reception = 1
         loop_restart = 1
-        labyrinth_easy = False
-        labyrinth_intermediate = False
-        labyrinth_difficult = False
+        choice = ""
 
         map = Graphic()
 
@@ -45,29 +43,25 @@ class Game:
                         loop_reception = 0
                         loop_restart = 1
                         print("reception F1")
-                        labyrinth_easy = True
+                        choice = "labyrinth/labyrinth_easy.txt"
 
                     elif event.key == K_F2:
                         loop_reception = 0
                         loop_restart = 1
-                        labyrinth_intermediate = True
+                        choice = "labyrinth/labyrinth_intermediate.txt"
 
                     elif event.key == K_F3:
                         loop_reception = 0
                         loop_restart = 1
-                        labyrinth_difficult = True
+                        choice = "labyrinth/labyrinth_difficult.txt"
 
         while loop_restart:
 
             print("loop_restart")
 
             player = Hero()
-            if labyrinth_easy:
-                map.open_file("labyrinth/labyrinth_easy.txt")
-            elif labyrinth_intermediate:
-                map.open_file("labyrinth/labyrinth_intermediate.txt")
-            elif labyrinth_difficult:
-                map.open_file("labyrinth/labyrinth_difficult.txt")
+
+            map.open_file(choice)
             map.creation_hero()
             map.mapping()
             map.hazard(NEEDLE)
