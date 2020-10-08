@@ -2,7 +2,11 @@
 The class allows to create the hero
 """
 
-from constants import *
+from back_end.constants import *
+
+"""
+Import of entire file
+"""
 
 
 class Hero:
@@ -33,13 +37,14 @@ class Hero:
 
         if self.map_hero_V + increment_V == -1 or self.map_hero_V + increment_V == 15:
             print("debordement move " + str_event + " impossible")
-            return # On sort de la methode
+            # We exit the method without any value
+            return
 
         if self.map_hero_H + increment_H == -1 or self.map_hero_H + increment_H == 15:
             print("debordement move " + str_event + " impossible")
             return
 
-        if p_map.map_game[self.map_hero_V + increment_V][self.map_hero_H + increment_H] != wall:
+        if p_map.map_game[self.map_hero_V + increment_V][self.map_hero_H + increment_H] != WALL:
 
             # We go down the hero GRAPHICALLY
             p_map.pixel_hero = p_map.pixel_hero.move(CASE_L * increment_H, CASE_H * increment_V)
@@ -50,7 +55,7 @@ class Hero:
             print(p_map.map_game[self.map_hero_V][self.map_hero_H])
 
         else:
-            print("wall move " + str_event + " impossible")
+            print("WALL move " + str_event + " impossible")
 
     def management_found_objects(self, p_map):
         """
@@ -58,23 +63,24 @@ class Hero:
         """
 
         # If the hero goes on the object, the value becomes true
-        if p_map.map_game[self.map_hero_V][self.map_hero_H] == ether:
-            p_map.init_case(self.map_hero_V, self.map_hero_H) # Permet de mettre la case en libre
-            print("You found the ether")
+        if p_map.map_game[self.map_hero_V][self.map_hero_H] == ETHER:
+            # Allows you to change the character of the case to free
+            p_map.init_case(self.map_hero_V, self.map_hero_H)
+            print("You found the ETHER")
             self.find_e = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == syringe:
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == SYRINGE:
             p_map.init_case(self.map_hero_V, self.map_hero_H)
-            print("You have found the syringe")
+            print("You have found the SYRINGE")
             self.find_s = True
 
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == needle:
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == NEEDLE:
             p_map.init_case(self.map_hero_V, self.map_hero_H)
-            print("You found the needle")
+            print("You found the NEEDLE")
             self.find_n = True
 
-        # If the hero is on the guardian
-        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == guardian:
+        # If the hero is on the GUARDIAN
+        elif p_map.map_game[self.map_hero_V][self.map_hero_H] == GUARDIAN:
 
             # If he finds all the objects he wins
             if self.find_e and self.find_n and self.find_s:
