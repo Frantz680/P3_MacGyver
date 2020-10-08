@@ -23,86 +23,34 @@ class Hero:
         self.map_hero_V = 0
         self.map_hero_H = 0
 
-    def move(self, p_event, p_map):
+    def move(self, str_event, p_map, increment_V, increment_H):
         """
         We move the person.
         """
 
-        if p_event == "down":  # If "down arrow"
-            if self.map_hero_V != 14:
-                if p_map.map_game[self.map_hero_V+1][self.map_hero_H] != wall:
+        print("position in map H : " + str(self.map_hero_H))
+        print("position in map V : " + str(self.map_hero_V))
 
-                    # We go down the hero GRAPHICALLY
-                    p_map.pixel_hero = p_map.pixel_hero.move(0, CASE_H)
+        if self.map_hero_V + increment_V == -1 or self.map_hero_V + increment_V == 15:
+            print("debordement move " + str_event + " impossible")
+            return # On sort de la methode
 
-                    # We go down the hero PHYSICALLY
-                    self.map_hero_V = self.map_hero_V + 1
+        if self.map_hero_H + increment_H == -1 or self.map_hero_H + increment_H == 15:
+            print("debordement move " + str_event + " impossible")
+            return
 
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-                    print(p_map.map_game[self.map_hero_V][self.map_hero_H])
+        if p_map.map_game[self.map_hero_V + increment_V][self.map_hero_H + increment_H] != wall:
 
-                else:
-                    print("wall move down impossible")
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
+            # We go down the hero GRAPHICALLY
+            p_map.pixel_hero = p_map.pixel_hero.move(CASE_L * increment_H, CASE_H * increment_V)
 
-        elif p_event == "up":  # If "up arrow"
-            if self.map_hero_V != 0:
-                if p_map.map_game[self.map_hero_V-1][self.map_hero_H] != wall:
+            # We go down the hero PHYSICALLY
+            self.map_hero_V = self.map_hero_V + increment_V
+            self.map_hero_H = self.map_hero_H + increment_H
+            print(p_map.map_game[self.map_hero_V][self.map_hero_H])
 
-                    # We mount the hero GRAPHICALLY
-                    p_map.pixel_hero = p_map.pixel_hero.move(0, -CASE_H)
-
-                    # We mount the hero PHYSICALLY
-                    self.map_hero_V = self.map_hero_V - 1
-
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-                    print(p_map.map_game[self.map_hero_V][self.map_hero_H])
-
-                else:
-                    print("wall moving up impossible")
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-
-        elif p_event == "left":  # If "left arrow"
-            if self.map_hero_H != 0:
-                if p_map.map_game[self.map_hero_V][self.map_hero_H-1] != wall:
-
-                    # The hero goes left GRAPHICALLY
-                    p_map.pixel_hero = p_map.pixel_hero.move(-CASE_L, 0)
-
-                    # The hero goes to the left PHYSICALLY
-                    self.map_hero_H = self.map_hero_H - 1
-
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-                    print(p_map.map_game[self.map_hero_V][self.map_hero_H])
-
-                else:
-                    print("wall move to the left impossible")
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-
-        elif p_event == "right":  # If "right arrow"
-            if self.map_hero_H != 14:
-                if p_map.map_game[self.map_hero_V][self.map_hero_H+1] != wall:
-
-                    # The hero goes right GRAPHICALLY
-                    p_map.pixel_hero = p_map.pixel_hero.move(CASE_L, 0)
-
-                    # The hero goes right PHYSICALLY
-                    self.map_hero_H = self.map_hero_H + 1
-
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
-                    print(p_map.map_game[self.map_hero_V][self.map_hero_H])
-
-                else:
-                    print("wall movement to the right not possible")
-                    print("position in map H : " + str(self.map_hero_H))
-                    print("position in map V : " + str(self.map_hero_V))
+        else:
+            print("wall move " + str_event + " impossible")
 
     def management_found_objects(self, p_map):
         """
