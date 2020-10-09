@@ -1,44 +1,44 @@
-# Aidez MacGyver à s'échapper
+# Aidez MacGyver Ã  s'Ã©chapper
 
 **Le but du jeu:**
  
-Vous incarnez MacGyver. Vous devez ramasser des objets qui seront placer aléatoirement dans le labyrinthe. 
-Une fois c'est objets ramasser, MacGyver pourra créer une seringue pour pouvoir endormir le gardien puis sortir 
+Vous incarnez MacGyver. Vous devez ramasser des objets qui seront placer alÃ©atoirement dans le labyrinthe. 
+Une fois c'est objets ramasser, MacGyver pourra crÃ©er une seringue pour pouvoir endormir le gardien puis sortir 
 du labyrinthe.
 
 -----------------
 
-Avez vous déjà l'application Python ?
+Avez vous dï¿½jï¿½ l'application Python ?
 
-Pour jouez à ce jeu coder en Python, il vous faudra l'installer.
-Rendez-vous sur le [site de Python](https://www.python.org/) pour l'installation.
+Pour jouez ï¿½ ce jeu coder en Python, il vous faudra l'installer.
+Rendez-vousï¿½surï¿½leï¿½[siteï¿½de Python](https://www.python.org/)ï¿½pourï¿½l'installation.
 
 **Comment lancer l'application ?**
 
-Il vous faut tout d'abord créer un environnement virtuel.
+Il vous faut tout d'abord crÃ©er un environnement virtuel.
 Explication:
 
-Il faut accéder à l'invite de commande:
-Dans le champ de recherche du menu Démarrer taper la commande suivante:
+Il faut accÃ©der Ã  l'invite de commande:
+Dans le champ de recherche du menu DÃ©marrer taper la commande suivante:
 
 -`cmd`
-Ceci permet d'accéder a l'invite de commande.
+Ceci permet d'accÃ©der a l'invite de commande.
 
 -`pip install virtualenv`
 Ceci est l'installation d'un environnement virtuel.
 
 -`virtualenv -p python3 env`
-Ceci va vous créer un dossier ''env''.
+Ceci va vous crÃ©er un dossier ''env''.
 
 -`source env/bin/activate`
 Ceci active un environnement virtuel.
 
 -----------------
 
-**Installation des différentes exigences**
+**Installation des diffÃ©rentes exigences**
 
 
-Ensuite, il vous faudra installer les différentes exigences pour la bonne utilisation du jeu.
+Ensuite, il vous faudra installer les diffÃ©rentes exigences pour la bonne utilisation du jeu.
 Explication :
 
 -`python3 -m pip install -r requirements.txt`
@@ -58,7 +58,8 @@ Un petit avant gout du jeu.
 
 ![Labyrinthe-jeu](https://user-images.githubusercontent.com/68595779/95330949-9196b380-08a9-11eb-924c-3754e6a555ea.png)
 
-Pour déplacer MacGyver, il suffit d'appuyer sur les touches directionelles du clavier.
-MacGyver, récupere automatique les objets quand il est dessus.
+Pour dï¿½placer MacGyver, il suffit d'appuyer sur les touches directionelles du clavier.
+MacGyver, rï¿½cupere automatique les objets quand il est dessus.
+
 **Bon jeu et bonne chance.**
 
