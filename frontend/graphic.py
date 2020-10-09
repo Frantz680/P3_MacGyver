@@ -4,8 +4,8 @@ This class allows you to place images and objects randomly
 
 from random import *
 
-from back_end.init_pygame import *
-from back_end.constants import *
+from backend.init_pygame import *
+from backend.constants import *
 
 """
 Import from random library

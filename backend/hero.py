@@ -2,7 +2,7 @@
 The class allows to create the hero
 """
 
-from back_end.constants import *
+from backend.constants import *
 
 """
 Import of entire file

@@ -5,7 +5,7 @@ Initialization of the pygame library
 import pygame
 from pygame.locals import *
 
-from back_end.constants import *
+from backend.constants import *
 
 """
 Import from pygame library
