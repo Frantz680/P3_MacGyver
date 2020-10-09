@@ -8,6 +8,11 @@ du labyrinthe.
 
 -----------------
 
+Avez vous d�j� l'application Python ?
+
+Pour jouez � ce jeu coder en Python, il vous faudra l'installer.
+Rendez-vous�sur�le�[site�de Python](https://www.python.org/)�pour�l'installation.
+
 **Comment lancer l'application ?**
 
 Il vous faut tout d'abord créer un environnement virtuel.
@@ -49,6 +54,12 @@ Explication :
 -`python game.py`
 Ceci vous lancera automatiquement le jeu.
 
+Un petit avant gout du jeu.
+
+![Labyrinthe-jeu](https://user-images.githubusercontent.com/68595779/95330949-9196b380-08a9-11eb-924c-3754e6a555ea.png)
+
+Pour d�placer MacGyver, il suffit d'appuyer sur les touches directionelles du clavier.
+MacGyver, r�cupere automatique les objets quand il est dessus.
 
 **Bon jeu et bonne chance.**
 
