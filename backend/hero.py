@@ -2,7 +2,7 @@
 The class allows to create the hero
 """
 
-from back_end.constants import *
+from backend.constants import *
 
 """
 Import of entire file
@@ -27,31 +27,36 @@ class Hero:
         self.map_hero_V = 0
         self.map_hero_H = 0
 
-    def move(self, str_event, p_map, increment_V, increment_H):
+    def move(self, str_event, p_map, ict_V, ict_H):
         """
         We move the person.
+        ict == increment
         """
 
         print("position in map H : " + str(self.map_hero_H))
         print("position in map V : " + str(self.map_hero_V))
 
-        if self.map_hero_V + increment_V == -1 or self.map_hero_V + increment_V == 15:
+        if self.map_hero_V + ict_V == -1 or \
+                self.map_hero_V + ict_V == 15:
             print("debordement move " + str_event + " impossible")
             # We exit the method without any value
             return
 
-        if self.map_hero_H + increment_H == -1 or self.map_hero_H + increment_H == 15:
+        if self.map_hero_H + ict_H == -1 or \
+                self.map_hero_H + ict_H == 15:
             print("debordement move " + str_event + " impossible")
             return
 
-        if p_map.map_game[self.map_hero_V + increment_V][self.map_hero_H + increment_H] != WALL:
+        if p_map.map_game[self.map_hero_V + ict_V][self.map_hero_H + ict_H]\
+                != WALL:
 
             # We go down the hero GRAPHICALLY
-            p_map.pixel_hero = p_map.pixel_hero.move(CASE_L * increment_H, CASE_H * increment_V)
+            p_map.pixel_hero = \
+                p_map.pixel_hero.move(CASE_L * ict_H, CASE_H * ict_V)
 
             # We go down the hero PHYSICALLY
-            self.map_hero_V = self.map_hero_V + increment_V
-            self.map_hero_H = self.map_hero_H + increment_H
+            self.map_hero_V = self.map_hero_V + ict_V
+            self.map_hero_H = self.map_hero_H + ict_H
             print(p_map.map_game[self.map_hero_V][self.map_hero_H])
 
         else:

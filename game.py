@@ -3,8 +3,8 @@ Game Help MacGyver escape!
 Game in which we have to move MacGyver to escape the labyrinth.
 """
 
-from front_end.graphic import *
-from back_end.hero import *
+from frontend.graphic import *
+from backend.hero import *
 
 """
 Import of entire file

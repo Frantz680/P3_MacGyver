@@ -4,8 +4,8 @@ This class allows you to place images and objects randomly
 
 from random import *
 
-from back_end.init_pygame import *
-from back_end.constants import *
+from backend.init_pygame import *
+from backend.constants import *
 
 """
 Import from random library
@@ -27,30 +27,52 @@ class Graphic:
         self.pixel_s = 0
 
         # Loading pictures
-        self.wall_picture = pygame.image.load("pictures/Mur.png").convert_alpha()
-        self.free_picture = pygame.image.load("pictures/libre.png").convert_alpha()
-        self.starting_picture = pygame.image.load("pictures/arriver.png").convert_alpha()
-        self.guardian_picture = pygame.image.load("pictures/gardien.png").convert_alpha()
-        self.needle_picture = pygame.image.load("pictures/aiguille.png").convert_alpha()
-        self.ether_picture = pygame.image.load("pictures/ETHER.png").convert_alpha()
-        self.syringe_picture = pygame.image.load("pictures/seringue.png").convert_alpha()
-        self.hero_picture = pygame.image.load("pictures/macgyver.png").convert_alpha()
-        self.dead_picture = pygame.image.load("pictures/mort.png").convert_alpha()
-        self.picture_win = pygame.image.load("pictures/gagnez.jpg").convert_alpha()
-        self.picture_home = pygame.image.load("pictures/accueil.jpg").convert_alpha()
+        self.wall_picture = \
+            pygame.image.load("pictures/Mur.png").convert_alpha()
+        self.free_picture = \
+            pygame.image.load("pictures/libre.png").convert_alpha()
+        self.starting_picture = \
+            pygame.image.load("pictures/arriver.png").convert_alpha()
+        self.guardian_picture = \
+            pygame.image.load("pictures/gardien.png").convert_alpha()
+        self.needle_picture = \
+            pygame.image.load("pictures/aiguille.png").convert_alpha()
+        self.ether_picture = \
+            pygame.image.load("pictures/ETHER.png").convert_alpha()
+        self.syringe_picture = \
+            pygame.image.load("pictures/seringue.png").convert_alpha()
+        self.hero_picture = \
+            pygame.image.load("pictures/macgyver.png").convert_alpha()
+        self.dead_picture = \
+            pygame.image.load("pictures/mort.png").convert_alpha()
+        self.picture_win = \
+            pygame.image.load("pictures/gagnez.jpg").convert_alpha()
+        self.picture_home = \
+            pygame.image.load("pictures/accueil.jpg").convert_alpha()
 
         # Creation of pictures dimensions
-        self.wall_picture = pygame.transform.scale(self.wall_picture, (CASE_L, CASE_H))
-        self.guardian_picture = pygame.transform.scale(self.guardian_picture, (CASE_L, CASE_H))
-        self.starting_picture = pygame.transform.scale(self.starting_picture, (CASE_L, CASE_H))
-        self.free_picture = pygame.transform.scale(self.free_picture, (CASE_L, CASE_H))
-        self.ether_picture = pygame.transform.scale(self.ether_picture, (CASE_L, CASE_H))
-        self.needle_picture = pygame.transform.scale(self.needle_picture, (CASE_L, CASE_H))
-        self.syringe_picture = pygame.transform.scale(self.syringe_picture, (CASE_L, CASE_H))
-        self.hero_picture = pygame.transform.scale(self.hero_picture, (CASE_L, CASE_H))
-        self.dead_picture = pygame.transform.scale(self.dead_picture, (WINDOW_L, WINDOW_H))
-        self.picture_win = pygame.transform.scale(self.picture_win, (WINDOW_L, WINDOW_H))
-        self.picture_home = pygame.transform.scale(self.picture_home, (WINDOW_L, WINDOW_H))
+        self.wall_picture = \
+            pygame.transform.scale(self.wall_picture, (CASE_L, CASE_H))
+        self.guardian_picture = \
+            pygame.transform.scale(self.guardian_picture, (CASE_L, CASE_H))
+        self.starting_picture = \
+            pygame.transform.scale(self.starting_picture, (CASE_L, CASE_H))
+        self.free_picture = \
+            pygame.transform.scale(self.free_picture, (CASE_L, CASE_H))
+        self.ether_picture = \
+            pygame.transform.scale(self.ether_picture, (CASE_L, CASE_H))
+        self.needle_picture = \
+            pygame.transform.scale(self.needle_picture, (CASE_L, CASE_H))
+        self.syringe_picture = \
+            pygame.transform.scale(self.syringe_picture, (CASE_L, CASE_H))
+        self.hero_picture = \
+            pygame.transform.scale(self.hero_picture, (CASE_L, CASE_H))
+        self.dead_picture = \
+            pygame.transform.scale(self.dead_picture, (WINDOW_L, WINDOW_H))
+        self.picture_win = \
+            pygame.transform.scale(self.picture_win, (WINDOW_L, WINDOW_H))
+        self.picture_home = \
+            pygame.transform.scale(self.picture_home, (WINDOW_L, WINDOW_H))
 
     def reception(self):
         """home screen display"""
