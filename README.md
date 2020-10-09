@@ -8,7 +8,7 @@ du labyrinthe.
 
 -----------------
 
-Avez vous d�j� l'application Python ?
+**Avez vous déjà l'application Python ?**
 
 Pour jouez � ce jeu coder en Python, il vous faudra l'installer.
 Rendez-vous�sur�le�[site�de Python](https://www.python.org/)�pour�l'installation.
