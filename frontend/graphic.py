@@ -13,7 +13,7 @@ from backend.constants import CASE_L, CASE_H, \
 """
 Import from random library
 
-Import of entire file
+Import different variables
 """
 
 

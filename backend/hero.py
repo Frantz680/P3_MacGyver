@@ -6,7 +6,7 @@ from backend.constants import WALL, ETHER, \
     SYRINGE, NEEDLE, GUARDIAN, CASE_L, CASE_H
 
 """
-Import of entire file
+Import different variables
 """
 
 

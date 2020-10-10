@@ -10,7 +10,7 @@ from frontend.graphic import Graphic, pygame
 from backend.hero import Hero, NEEDLE, ETHER, SYRINGE
 
 """
-Import of entire file
+Import different variables
 """
 
 
