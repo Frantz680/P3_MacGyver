@@ -2,7 +2,8 @@
 The class allows to create the hero
 """
 
-from backend.constants import *
+from backend.constants import WALL, ETHER, \
+    SYRINGE, NEEDLE, GUARDIAN, CASE_L, CASE_H
 
 """
 Import of entire file

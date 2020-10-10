@@ -3,8 +3,11 @@ Game Help MacGyver escape!
 Game in which we have to move MacGyver to escape the labyrinth.
 """
 
-from frontend.graphic import *
-from backend.hero import *
+from pygame.locals import QUIT, KEYDOWN, K_F1, K_F2, K_F3, \
+    K_DOWN, K_UP, K_LEFT, K_RIGHT
+
+from frontend.graphic import Graphic, pygame
+from backend.hero import Hero, NEEDLE, ETHER, SYRINGE
 
 """
 Import of entire file

@@ -2,10 +2,13 @@
 This class allows you to place images and objects randomly
 """
 
-from random import *
+from random import randint
 
-from backend.init_pygame import *
-from backend.constants import *
+from backend.init_pygame import pygame, window
+from backend.constants import CASE_L, CASE_H, \
+    WINDOW_L, WINDOW_H, POSITION_PIXEL_RECEPTION, WALL, \
+    GUARDIAN, STARTING, NEEDLE, SYRINGE, ETHER, FREE, \
+    POSITION_PIXEL_WIN, POSITION_PIXEL_DEAD
 
 """
 Import from random library
@@ -113,37 +116,37 @@ class Graphic:
 
         # We browse all the rows of the table to see the characters
 
-        for position_V in range(0, 15):
-            for position_H in range(0, 15):
+        for pos_v in range(0, 15):
+            for pos_h in range(0, 15):
 
                 # to each character that corresponds we paste an image
-                if self.map_game[position_H][position_V] == WALL:
-                    pixel_wall = (CASE_L*position_V, CASE_H*position_H)
+                if self.map_game[pos_h][pos_v] == WALL:
+                    pixel_wall = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.wall_picture, pixel_wall)
 
-                elif self.map_game[position_H][position_V] == GUARDIAN:
-                    self.pixel_g = (CASE_L*position_V, CASE_H*position_H)
+                elif self.map_game[pos_h][pos_v] == GUARDIAN:
+                    self.pixel_g = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.free_picture, self.pixel_g)
                     window.blit(self.guardian_picture, self.pixel_g)
 
-                elif self.map_game[position_H][position_V] == STARTING:
-                    self.pixel_start = (CASE_L*position_V, CASE_H*position_H)
+                elif self.map_game[pos_h][pos_v] == STARTING:
+                    self.pixel_start = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.starting_picture, self.pixel_start)
 
-                elif self.map_game[position_H][position_V] == NEEDLE:
-                    self.pixel_n = (CASE_L*position_V, CASE_H*position_H)
+                elif self.map_game[pos_h][pos_v] == NEEDLE:
+                    self.pixel_n = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.needle_picture, self.pixel_n)
 
-                elif self.map_game[position_H][position_V] == SYRINGE:
-                    self.pixel_s = (CASE_L*position_V, CASE_H*position_H)
+                elif self.map_game[pos_h][pos_v] == SYRINGE:
+                    self.pixel_s = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.syringe_picture, self.pixel_s)
 
-                elif self.map_game[position_H][position_V] == ETHER:
-                    self.pixel_ether = (CASE_L*position_V, CASE_H*position_H)
+                elif self.map_game[pos_h][pos_v] == ETHER:
+                    self.pixel_ether = (CASE_L * pos_v, CASE_H * pos_h)
                     window.blit(self.ether_picture, self.pixel_ether)
 
                 else:
-                    pixel_free = (CASE_L*position_V, CASE_H*position_H)
+                    pixel_free = (CASE_L*pos_v, CASE_H*pos_h)
                     window.blit(self.free_picture, pixel_free)
 
         window.blit(self.hero_picture, self.pixel_hero)
