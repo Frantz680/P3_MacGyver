@@ -10,7 +10,7 @@ from backend.constants import WINDOW_L, WINDOW_H
 """
 Import from pygame library
 
-Import of entire file
+Import different variables
 """
 
 pygame.init()
