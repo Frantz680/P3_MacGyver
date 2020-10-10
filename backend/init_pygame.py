@@ -3,9 +3,9 @@ Initialization of the pygame library
 """
 
 import pygame
-from pygame.locals import *
+from pygame.locals import RESIZABLE
 
-from backend.constants import *
+from backend.constants import WINDOW_L, WINDOW_H
 
 """
 Import from pygame library
